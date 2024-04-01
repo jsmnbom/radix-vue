@@ -8,12 +8,12 @@ export interface ComboboxEmptyProps extends PrimitiveProps {}
 import { Primitive } from '@/Primitive'
 import { useForwardExpose } from '@/shared'
 import { computed } from 'vue'
-import { injectComboboxRootContext } from './ComboboxRoot.vue'
+import { comboboxRootContext } from './ComboboxRoot.vue'
 
 const props = defineProps<ComboboxEmptyProps>()
 
 useForwardExpose()
-const rootContext = injectComboboxRootContext()
+const rootContext = comboboxRootContext.inject()
 // if no options, then show this
 const isEmpty = computed(() => rootContext.filteredOptions.value.length === 0)
 </script>

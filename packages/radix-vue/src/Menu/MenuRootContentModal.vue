@@ -3,14 +3,14 @@ import MenuContentImpl, {
   type MenuContentImplEmits,
   type MenuRootContentTypeProps,
 } from './MenuContentImpl.vue'
-import { injectMenuContext } from './MenuRoot.vue'
+import { menuContext as MenuContext } from './MenuRoot.vue'
 import { useForwardExpose, useForwardPropsEmits, useHideOthers } from '@/shared'
 
 const props = defineProps<MenuRootContentModalProps>()
 const emits = defineEmits<MenuRootContentModalEmits>()
 const forwarded = useForwardPropsEmits(props, emits)
 
-const menuContext = injectMenuContext()
+const menuContext = MenuContext.inject()
 
 interface MenuRootContentModalProps extends MenuRootContentTypeProps {}
 type MenuRootContentModalEmits = MenuContentImplEmits

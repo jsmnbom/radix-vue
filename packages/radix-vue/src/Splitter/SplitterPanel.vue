@@ -61,7 +61,7 @@ export type PanelData = {
 
 <script setup lang="ts">
 import { Primitive } from '@/Primitive'
-import { injectPanelGroupContext } from './SplitterGroup.vue'
+import { panelGroupContext } from './SplitterGroup.vue'
 import { computed, onMounted, onUnmounted, watch } from 'vue'
 
 const props = defineProps<SplitterPanelProps>()
@@ -76,14 +76,7 @@ defineSlots<{
   }): any
 }>()
 
-const panelGroupContext = injectPanelGroupContext()
-if (panelGroupContext === null) {
-  throw new Error(
-    'SplitterPanel components must be rendered within a SplitterGroup container',
-  )
-}
-
-const { collapsePanel, expandPanel, getPanelSize, getPanelStyle, isPanelCollapsed, resizePanel, groupId, reevaluatePanelConstraints, registerPanel, unregisterPanel } = panelGroupContext
+const { collapsePanel, expandPanel, getPanelSize, getPanelStyle, isPanelCollapsed, resizePanel, groupId, reevaluatePanelConstraints, registerPanel, unregisterPanel } = panelGroupContext.inject()
 const panelId = useId(props.id, 'radix-vue-splitter-panel')
 
 const panelDataRef = computed(() => ({

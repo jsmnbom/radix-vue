@@ -54,8 +54,7 @@ export type AccordionRootContext<P extends AccordionRootProps> = {
   collapsible: boolean
 }
 
-export const [injectAccordionRootContext, provideAccordionRootContext]
-  = createContext<AccordionRootContext<AccordionRootProps>>('AccordionRoot')
+export const accordionRootContext = createContext<AccordionRootContext<AccordionRootProps>>('AccordionRoot')
 </script>
 
 <script setup lang="ts" generic="ValidValue extends (string | string[]), ExplicitType extends SingleOrMultipleType">
@@ -85,7 +84,7 @@ const { modelValue, changeModelValue, isSingle } = useSingleOrMultipleValue(prop
 
 const { forwardRef, currentElement: parentElement } = useForwardExpose()
 
-provideAccordionRootContext({
+accordionRootContext.provide({
   disabled,
   direction,
   orientation: props.orientation,

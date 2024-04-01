@@ -46,8 +46,7 @@ export type DateRangePickerRootEmits = {
   'update:placeholder': [date: DateValue]
 }
 
-export const [injectDateRangePickerRootContext, provideDateRangePickerRootContext]
-  = createContext<DateRangePickerRootContext>('DateRangePickerRoot')
+export const dateRangePickerRootContext = createContext<DateRangePickerRootContext>('DateRangePickerRoot')
 </script>
 
 <script setup lang="ts">
@@ -123,7 +122,7 @@ const open = useVModel(props, 'open', emits, {
 
 const dateFieldRef = ref<InstanceType<typeof DateRangeFieldRoot> | undefined>()
 
-provideDateRangePickerRootContext({
+dateRangePickerRootContext.provide({
   isDateUnavailable: propsIsDateUnavailable.value,
   isDateDisabled: propsIsDateDisabled.value,
   locale,

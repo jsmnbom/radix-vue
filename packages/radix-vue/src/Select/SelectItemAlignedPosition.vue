@@ -11,15 +11,14 @@ interface SelectItemAlignedPositionContext {
 
 export interface SelectItemAlignedPositionProps extends PrimitiveProps {}
 
-export const [injectSelectItemAlignedPositionContext, provideSelectItemAlignedPositionContext]
-  = createContext<SelectItemAlignedPositionContext>('SelectItemAlignedPosition')
+export const selectItemAlignedPositionContext = createContext<SelectItemAlignedPositionContext>('SelectItemAlignedPosition')
 </script>
 
 <script setup lang="ts">
 import { nextTick, onMounted, ref } from 'vue'
 import { clamp } from '@vueuse/shared'
-import { injectSelectRootContext } from './SelectRoot.vue'
-import { injectSelectContentContext } from './SelectContentImpl.vue'
+import { selectRootContext } from './SelectRoot.vue'
+import { selectContentContext } from './SelectContentImpl.vue'
 import { CONTENT_MARGIN } from './utils'
 import { Primitive } from '@/Primitive'
 
@@ -33,8 +32,8 @@ const emits = defineEmits<{
 }>()
 
 const { injectCollection } = useCollection()
-const rootContext = injectSelectRootContext()
-const contentContext = injectSelectContentContext()
+const rootContext = selectRootContext.inject()
+const contentContext = selectContentContext.inject()
 const collectionItems = injectCollection()
 
 const shouldExpandOnScrollRef = ref(false)
@@ -216,7 +215,7 @@ function handleScrollButtonChange(node: HTMLElement | undefined) {
   }
 }
 
-provideSelectItemAlignedPositionContext({
+selectItemAlignedPositionContext.provide({
   contentWrapper: contentWrapperElement,
   shouldExpandOnScrollRef,
   onScrollButtonChange: handleScrollButtonChange,

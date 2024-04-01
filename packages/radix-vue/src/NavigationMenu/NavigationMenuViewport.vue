@@ -19,7 +19,7 @@ import {
   watch,
 } from 'vue'
 import { useResizeObserver } from '@vueuse/core'
-import { injectNavigationMenuContext } from './NavigationMenuRoot.vue'
+import { navigationMenuContext } from './NavigationMenuRoot.vue'
 import { getOpenState, whenMouse } from './utils'
 import {
   Primitive,
@@ -34,7 +34,7 @@ defineProps<NavigationMenuViewportProps>()
 
 const { forwardRef, currentElement } = useForwardExpose()
 
-const menuContext = injectNavigationMenuContext()
+const menuContext = navigationMenuContext.inject()
 
 const size = ref<{ width: number; height: number }>()
 

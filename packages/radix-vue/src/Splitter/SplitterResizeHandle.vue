@@ -25,7 +25,7 @@ export type SplitterResizeHandleEmits = {
 
 <script setup lang="ts">
 import { Primitive } from '@/Primitive'
-import { injectPanelGroupContext } from './SplitterGroup.vue'
+import { panelGroupContext } from './SplitterGroup.vue'
 import type { ResizeEvent, ResizeHandler } from './utils/types'
 import type { PointerHitAreaMargins, ResizeHandlerAction } from './utils/registry'
 import { registerResizeHandle } from './utils/registry'
@@ -40,13 +40,6 @@ const emits = defineEmits<SplitterResizeHandleEmits>()
 const { forwardRef, currentElement } = useForwardExpose()
 const { disabled } = toRefs(props)
 
-const panelGroupContext = injectPanelGroupContext()
-if (panelGroupContext === null) {
-  throw new Error(
-    'PanelResizeHandle components must be rendered within a PanelGroup container',
-  )
-}
-
 const {
   direction,
   groupId,
@@ -54,7 +47,7 @@ const {
   startDragging,
   stopDragging,
   panelGroupElement,
-} = panelGroupContext
+} = panelGroupContext.inject()
 
 const resizeHandleId = useId(props.id, 'radix-vue-splitter-resize-handle')
 const state = ref<ResizeHandlerState>('inactive')

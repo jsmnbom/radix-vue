@@ -47,8 +47,7 @@ export interface PinInputRootContext {
   onInputElementChange: (el: HTMLInputElement) => void
 }
 
-export const [injectPinInputRootContext, providePinInputRootContext]
-  = createContext<PinInputRootContext>('PinInputRoot')
+export const pinInputRootContext = createContext<PinInputRootContext>('PinInputRoot')
 </script>
 
 <script setup lang="ts">
@@ -96,7 +95,7 @@ watch(modelValue, () => {
     emits('complete', modelValue.value)
 }, { deep: true })
 
-providePinInputRootContext({
+pinInputRootContext.provide({
   modelValue,
   mask,
   otp,

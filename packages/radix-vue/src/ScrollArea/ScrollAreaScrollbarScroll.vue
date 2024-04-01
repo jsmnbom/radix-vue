@@ -8,16 +8,16 @@ export interface ScrollAreaScrollbarScrollProps {
 import { watchEffect } from 'vue'
 import { useDebounceFn } from '@vueuse/core'
 import { useStateMachine } from '../shared/useStateMachine'
-import { injectScrollAreaRootContext } from './ScrollAreaRoot.vue'
-import { injectScrollAreaScrollbarContext } from './ScrollAreaScrollbar.vue'
+import { scrollAreaRootContext } from './ScrollAreaRoot.vue'
+import { scrollAreaScrollbarContext } from './ScrollAreaScrollbar.vue'
 import ScrollAreaScrollbarVisible from './ScrollAreaScrollbarVisible.vue'
 import { Presence } from '@/Presence'
 import { useForwardExpose } from '@/shared'
 
 defineProps<ScrollAreaScrollbarScrollProps>()
 
-const rootContext = injectScrollAreaRootContext()
-const scrollbarContext = injectScrollAreaScrollbarContext()
+const rootContext = scrollAreaRootContext.inject()
+const scrollbarContext = scrollAreaScrollbarContext.inject()
 
 const { forwardRef } = useForwardExpose()
 

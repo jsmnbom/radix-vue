@@ -8,13 +8,13 @@ export interface ToastCloseProps extends PrimitiveProps {}
 <script setup lang="ts">
 import { Primitive } from '@/Primitive'
 import ToastAnnounceExclude from './ToastAnnounceExclude.vue'
-import { injectToastRootContext } from './ToastRootImpl.vue'
+import { toastRootContext } from './ToastRootImpl.vue'
 
 const props = withDefaults(defineProps<ToastCloseProps>(), {
   as: 'button',
 })
 
-const rootContext = injectToastRootContext()
+const rootContext = toastRootContext.inject()
 const { forwardRef } = useForwardExpose()
 </script>
 

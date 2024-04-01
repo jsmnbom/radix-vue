@@ -14,16 +14,16 @@ export interface MenuItemProps extends MenuItemImplProps {}
 <script setup lang="ts">
 import { nextTick, ref } from 'vue'
 import MenuItemImpl from './MenuItemImpl.vue'
-import { injectMenuRootContext } from './MenuRoot.vue'
-import { injectMenuContentContext } from './MenuContentImpl.vue'
+import { menuRootContext } from './MenuRoot.vue'
+import { menuContentContext } from './MenuContentImpl.vue'
 import { ITEM_SELECT, SELECTION_KEYS } from './utils'
 
 const props = defineProps<MenuItemProps>()
 const emits = defineEmits<MenuItemEmits>()
 
 const { forwardRef, currentElement } = useForwardExpose()
-const rootContext = injectMenuRootContext()
-const contentContext = injectMenuContentContext()
+const rootContext = menuRootContext.inject()
+const contentContext = menuContentContext.inject()
 
 const isPointerDownRef = ref(false)
 

@@ -7,13 +7,13 @@ export interface AccordionContentProps extends PrimitiveProps {}
 <script setup lang="ts">
 import { useForwardExpose } from '@/shared'
 import { CollapsibleContent } from '../Collapsible'
-import { injectAccordionItemContext } from './AccordionItem.vue'
-import { injectAccordionRootContext } from './AccordionRoot.vue'
+import { accordionItemContext } from './AccordionItem.vue'
+import { accordionRootContext } from './AccordionRoot.vue'
 
 const props = defineProps<AccordionContentProps>()
 
-const rootContext = injectAccordionRootContext()
-const itemContext = injectAccordionItemContext()
+const rootContext = accordionRootContext.inject()
+const itemContext = accordionItemContext.inject()
 
 useForwardExpose()
 </script>

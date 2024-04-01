@@ -7,7 +7,7 @@ import { type InjectionKey, inject, provide } from 'vue'
  *
  * @param contextName The description for injection key symbol.
  */
-export function createContext<ContextValue>(
+/* @__NO_SIDE_EFFECTS__ */ export function createContext<ContextValue>(
   providerComponentName: string | string[],
   contextName?: string,
 ) {
@@ -52,5 +52,8 @@ export function createContext<ContextValue>(
     return contextValue
   }
 
-  return [injectContext, provideContext] as const
+  return {
+    inject: injectContext,
+    provide: provideContext,
+  }
 }

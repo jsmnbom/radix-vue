@@ -38,14 +38,13 @@ export interface ToastRootImplProps extends PrimitiveProps {
   duration?: number
 }
 
-export const [injectToastRootContext, provideToastRootContext]
-  = createContext<{ onClose(): void }>('ToastRoot')
+export const toastRootContext = createContext<{ onClose(): void }>('ToastRoot')
 </script>
 
 <script setup lang="ts">
 import { Primitive } from '@/Primitive'
 import { computed, onMounted, onUnmounted, ref, watchEffect } from 'vue'
-import { injectToastProviderContext } from './ToastProvider.vue'
+import { toastProviderContext } from './ToastProvider.vue'
 import { TOAST_SWIPE_CANCEL, TOAST_SWIPE_END, TOAST_SWIPE_MOVE, TOAST_SWIPE_START, VIEWPORT_PAUSE, VIEWPORT_RESUME, getAnnounceTextContent, handleAndDispatchCustomEvent, isDeltaInDirection } from './utils'
 import ToastAnnounce from './ToastAnnounce.vue'
 import { onKeyStroke } from '@vueuse/core'
@@ -62,7 +61,7 @@ const props = withDefaults(defineProps<ToastRootImplProps>(), {
 const emits = defineEmits<ToastRootImplEmits>()
 
 const { forwardRef, currentElement } = useForwardExpose()
-const providerContext = injectToastProviderContext()
+const providerContext = toastProviderContext.inject()
 const pointerStartRef = ref<{ x: number; y: number } | null>(null)
 const swipeDeltaRef = ref<{ x: number; y: number } | null>(null)
 const duration = computed(() => props.duration || providerContext.duration.value)
@@ -140,7 +139,7 @@ onUnmounted(() => {
   providerContext.onToastRemove()
 })
 
-provideToastRootContext({ onClose: handleClose })
+toastRootContext.provide({ onClose: handleClose })
 </script>
 
 <template>

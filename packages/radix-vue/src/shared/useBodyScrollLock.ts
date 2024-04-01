@@ -5,11 +5,11 @@ import {
 import { type Fn, isClient, isIOS, tryOnBeforeUnmount } from '@vueuse/shared'
 import { computed, nextTick, ref, watch } from 'vue'
 import { defu } from 'defu'
-import { injectConfigProviderContext } from '@/ConfigProvider/ConfigProvider.vue'
+import { configProviderContext } from '@/ConfigProvider/ConfigProvider.vue'
 
 import { nanoid } from 'nanoid/non-secure'
 
-const useBodyLockStackCount = createSharedComposable(() => {
+const useBodyLockStackCount = /* @__PURE__ */ createSharedComposable(() => {
   const map = ref<Map<string, boolean>>(new Map())
   const initialOverflow = ref<string | undefined>()
 
@@ -21,7 +21,7 @@ const useBodyLockStackCount = createSharedComposable(() => {
     return false
   })
 
-  const context = injectConfigProviderContext({
+  const context = configProviderContext.inject({
     scrollBody: ref(true),
   })
 

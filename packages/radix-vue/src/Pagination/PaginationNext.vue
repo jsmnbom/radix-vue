@@ -7,12 +7,12 @@ export interface PaginationNextProps extends PrimitiveProps {}
 
 <script setup lang="ts">
 import { Primitive } from '@/Primitive'
-import { injectPaginationRootContext } from './PaginationRoot.vue'
+import { paginationRootContext } from './PaginationRoot.vue'
 
 const props = withDefaults(defineProps<PaginationNextProps>(), { as: 'button' })
 
 useForwardExpose()
-const rootContext = injectPaginationRootContext()
+const rootContext = paginationRootContext.inject()
 </script>
 
 <template>

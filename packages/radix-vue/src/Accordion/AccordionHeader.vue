@@ -6,16 +6,16 @@ export interface AccordionHeaderProps extends PrimitiveProps {}
 
 <script setup lang="ts">
 import { useForwardExpose } from '@/shared'
-import { injectAccordionItemContext } from './AccordionItem.vue'
-import { injectAccordionRootContext } from './AccordionRoot.vue'
+import { accordionItemContext } from './AccordionItem.vue'
+import { accordionRootContext } from './AccordionRoot.vue'
 import { Primitive } from '@/Primitive'
 
 const props = withDefaults(defineProps<AccordionHeaderProps>(), {
   as: 'h3',
 })
 
-const rootContext = injectAccordionRootContext()
-const itemContext = injectAccordionItemContext()
+const rootContext = accordionRootContext.inject()
+const itemContext = accordionItemContext.inject()
 
 useForwardExpose()
 </script>

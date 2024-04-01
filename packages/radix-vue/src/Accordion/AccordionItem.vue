@@ -1,7 +1,7 @@
 <script lang="ts">
 import type { ComputedRef, VNodeRef } from 'vue'
 import type { CollapsibleRootProps } from '../Collapsible'
-import { injectAccordionRootContext } from './AccordionRoot.vue'
+import { accordionRootContext } from './AccordionRoot.vue'
 import { createContext, useArrowNavigation, useForwardExpose } from '@/shared'
 
 enum AccordionItemState {
@@ -35,8 +35,7 @@ interface AccordionItemContext {
   value: ComputedRef<string>
 }
 
-export const [injectAccordionItemContext, provideAccordionItemContext]
-  = createContext<AccordionItemContext>('AccordionItem')
+export const accordionItemContext = createContext<AccordionItemContext>('AccordionItem')
 </script>
 
 <script setup lang="ts">
@@ -52,7 +51,7 @@ defineSlots<{
   }): any
 }>()
 
-const rootContext = injectAccordionRootContext()
+const rootContext = accordionRootContext.inject()
 
 const open = computed(() =>
   rootContext.isSingle.value
@@ -78,7 +77,7 @@ const dataState = computed(() =>
 defineExpose({ open, dataDisabled })
 const { currentRef, currentElement } = useForwardExpose()
 
-provideAccordionItemContext({
+accordionItemContext.provide({
   open,
   dataState,
   disabled,

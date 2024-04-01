@@ -30,8 +30,7 @@ export interface DialogRootContext {
   descriptionId: string
 }
 
-export const [injectDialogRootContext, provideDialogRootContext]
-  = createContext<DialogRootContext>('DialogRoot')
+export const dialogRootContext = createContext<DialogRootContext>('DialogRoot')
 </script>
 
 <script setup lang="ts">
@@ -54,7 +53,7 @@ const triggerElement = ref<HTMLElement>()
 const contentElement = ref<HTMLElement>()
 const { modal } = toRefs(props)
 
-provideDialogRootContext({
+dialogRootContext.provide({
   open,
   modal,
   openModal: () => {

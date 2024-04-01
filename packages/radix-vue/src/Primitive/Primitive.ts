@@ -36,7 +36,7 @@ export interface PrimitiveProps {
   as?: AsTag | Component
 }
 
-export const Primitive = defineComponent({
+export const Primitive = /* @__PURE__ */ defineComponent({
   name: 'Primitive',
   inheritAttrs: false,
   props: {

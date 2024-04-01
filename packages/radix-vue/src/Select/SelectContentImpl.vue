@@ -68,8 +68,7 @@ export interface SelectContentImplProps extends PopperContentProps {
   position?: 'item-aligned' | 'popper'
 }
 
-export const [injectSelectContentContext, provideSelectContentContext]
-  = createContext<SelectContentContext>('SelectContent')
+export const selectContentContext = createContext<SelectContentContext>('SelectContent')
 </script>
 
 <script setup lang="ts">
@@ -80,7 +79,7 @@ import {
   watchEffect,
 } from 'vue'
 import { unrefElement } from '@vueuse/core'
-import { injectSelectRootContext } from './SelectRoot.vue'
+import { selectRootContext } from './SelectRoot.vue'
 import SelectItemAlignedPosition from './SelectItemAlignedPosition.vue'
 import SelectPopperPosition from './SelectPopperPosition.vue'
 import { FocusScope } from '@/FocusScope'
@@ -93,7 +92,7 @@ const props = withDefaults(defineProps<SelectContentImplProps>(), {
 })
 const emits = defineEmits<SelectContentImplEmits>()
 
-const rootContext = injectSelectRootContext()
+const rootContext = selectRootContext.inject()
 
 useFocusGuards()
 useBodyScrollLock(true)
@@ -202,7 +201,7 @@ const pickedProps = computed(() => {
 
 const forwardedProps = useForwardProps(pickedProps.value)
 
-provideSelectContentContext({
+selectContentContext.provide({
   content,
   viewport,
   onViewportChange: (node) => {

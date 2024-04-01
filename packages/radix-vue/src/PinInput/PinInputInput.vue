@@ -1,6 +1,6 @@
 <script lang="ts">
 import { type PrimitiveProps } from '@/Primitive'
-import { injectPinInputRootContext } from './PinInputRoot.vue'
+import { pinInputRootContext } from './PinInputRoot.vue'
 import { useArrowNavigation } from '@/shared'
 
 export interface PinInputInputProps extends PrimitiveProps {
@@ -18,7 +18,7 @@ const props = withDefaults(defineProps<PinInputInputProps>(), {
   as: 'input',
 })
 
-const context = injectPinInputRootContext()
+const context = pinInputRootContext.inject()
 const inputElements = computed(() => Array.from(context.inputElements!.value))
 
 const disabled = computed(() => props.disabled || context.disabled.value)

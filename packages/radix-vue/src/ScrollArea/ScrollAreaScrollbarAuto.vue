@@ -7,16 +7,16 @@ export interface ScrollAreaScrollbarAutoProps {
 <script setup lang="ts">
 import { onMounted, ref } from 'vue'
 import { useDebounceFn, useResizeObserver } from '@vueuse/core'
-import { injectScrollAreaRootContext } from './ScrollAreaRoot.vue'
-import { injectScrollAreaScrollbarContext } from './ScrollAreaScrollbar.vue'
+import { scrollAreaRootContext } from './ScrollAreaRoot.vue'
+import { scrollAreaScrollbarContext } from './ScrollAreaScrollbar.vue'
 import ScrollAreaScrollbarVisible from './ScrollAreaScrollbarVisible.vue'
 import { Presence } from '@/Presence'
 import { useForwardExpose } from '@/shared'
 
 defineProps<ScrollAreaScrollbarAutoProps>()
 
-const rootContext = injectScrollAreaRootContext()
-const scrollbarContext = injectScrollAreaScrollbarContext()
+const rootContext = scrollAreaRootContext.inject()
+const scrollbarContext = scrollAreaScrollbarContext.inject()
 
 const { forwardRef } = useForwardExpose()
 

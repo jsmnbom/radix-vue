@@ -2,7 +2,7 @@
 import SliderImpl from './SliderImpl.vue'
 import { computed, ref, toRefs } from 'vue'
 import type { Direction, SliderOrientationPrivateEmits, SliderOrientationPrivateProps } from './utils'
-import { BACK_KEYS, linearScale, provideSliderOrientationContext } from './utils'
+import { BACK_KEYS, linearScale, sliderOrientationContext } from './utils'
 import { useForwardExpose } from '@/shared'
 
 interface SliderHorizontalProps extends SliderOrientationPrivateProps {
@@ -28,7 +28,7 @@ function getValueFromPointer(pointerPosition: number) {
   return value(pointerPosition - rect.left)
 }
 
-provideSliderOrientationContext({
+sliderOrientationContext.provide({
   startEdge: isSlidingFromLeft.value ? 'left' : 'right',
   endEdge: isSlidingFromLeft.value ? 'right' : 'left',
   direction: isSlidingFromLeft.value ? 1 : -1,

@@ -42,8 +42,7 @@ interface RovingContext {
   onFocusableItemRemove(): void
 }
 
-export const [injectRovingFocusGroupContext, provideRovingFocusGroupContext]
-  = createContext<RovingContext>('RovingFocusGroup')
+export const rovingFocusGroupContext = createContext<RovingContext>('RovingFocusGroup')
 </script>
 
 <script setup lang="ts">
@@ -104,7 +103,7 @@ function handleFocus(event: FocusEvent) {
   isClickFocus.value = false
 }
 
-provideRovingFocusGroupContext({
+rovingFocusGroupContext.provide({
   loop,
   dir,
   orientation,

@@ -12,7 +12,7 @@ export interface ToggleGroupItemProps extends ToggleProps {
 
 <script setup lang="ts">
 import { computed } from 'vue'
-import { injectToggleGroupRootContext } from './ToggleGroupRoot.vue'
+import { toggleGroupRootContext } from './ToggleGroupRoot.vue'
 import { Toggle } from '@/Toggle'
 import { RovingFocusItem } from '@/RovingFocus'
 import { Primitive } from '@/Primitive'
@@ -21,7 +21,7 @@ const props = withDefaults(defineProps<ToggleGroupItemProps>(), {
   as: 'button',
 })
 
-const rootContext = injectToggleGroupRootContext()
+const rootContext = toggleGroupRootContext.inject()
 const disabled = computed(() => rootContext.disabled?.value || props.disabled)
 const pressed = computed(() => rootContext.modelValue.value?.includes(props.value))
 

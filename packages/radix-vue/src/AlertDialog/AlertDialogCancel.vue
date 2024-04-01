@@ -7,11 +7,11 @@ export interface AlertDialogCancelProps extends DialogCloseProps {}
 
 <script setup lang="ts">
 import { onMounted } from 'vue'
-import { injectAlertDialogContentContext } from './AlertDialogContent.vue'
+import { alertDialogContentContext } from './AlertDialogContent.vue'
 import { DialogClose } from '@/Dialog'
 
 const props = defineProps<AlertDialogCancelProps>()
-const contentContext = injectAlertDialogContentContext()
+const contentContext = alertDialogContentContext.inject()
 const { forwardRef, currentElement } = useForwardExpose()
 
 onMounted(() => {

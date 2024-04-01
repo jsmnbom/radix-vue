@@ -1,7 +1,7 @@
 <script lang="ts">
 import type { PrimitiveProps } from '@/Primitive'
-import { injectTagsInputItemContext } from './TagsInputItem.vue'
-import { injectTagsInputRootContext } from './TagsInputRoot.vue'
+import { tagsInputItemContext } from './TagsInputItem.vue'
+import { tagsInputRootContext } from './TagsInputRoot.vue'
 import { computed } from 'vue'
 import { useForwardExpose } from '@/shared'
 
@@ -16,8 +16,8 @@ const props = withDefaults(defineProps<TagsInputItemDeleteProps>(), {
 })
 
 useForwardExpose()
-const context = injectTagsInputRootContext()
-const itemContext = injectTagsInputItemContext()
+const context = tagsInputRootContext.inject()
+const itemContext = tagsInputItemContext.inject()
 
 const disabled = computed(() => itemContext.disabled?.value || context.disabled.value)
 

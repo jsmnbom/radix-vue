@@ -10,7 +10,7 @@ export interface RovingFocusItemProps extends PrimitiveProps {
 
 <script setup lang="ts">
 import { computed, nextTick, onMounted, onUnmounted } from 'vue'
-import { injectRovingFocusGroupContext } from './RovingFocusGroup.vue'
+import { rovingFocusGroupContext } from './RovingFocusGroup.vue'
 import { Primitive } from '@/Primitive'
 import { focusFirst, getFocusIntent, wrapArray } from './utils'
 import { useCollection, useId } from '@/shared'
@@ -21,7 +21,7 @@ const props = withDefaults(defineProps<RovingFocusItemProps>(), {
   as: 'span',
 })
 
-const context = injectRovingFocusGroupContext()
+const context = rovingFocusGroupContext.inject()
 const id = computed(() => props.tabStopId || useId())
 const isCurrentTabStop = computed(
   () => context.currentTabStopId.value === id.value,

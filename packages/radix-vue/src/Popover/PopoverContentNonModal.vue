@@ -4,12 +4,12 @@ import PopoverContentImpl, {
   type PopoverContentImplEmits,
   type PopoverContentImplProps,
 } from './PopoverContentImpl.vue'
-import { injectPopoverRootContext } from './PopoverRoot.vue'
+import { popoverRootContext } from './PopoverRoot.vue'
 import { useForwardPropsEmits } from '@/shared'
 
 const props = defineProps<PopoverContentImplProps>()
 const emits = defineEmits<PopoverContentImplEmits>()
-const rootContext = injectPopoverRootContext()
+const rootContext = popoverRootContext.inject()
 const hasInteractedOutsideRef = ref(false)
 const hasPointerDownOutsideRef = ref(false)
 

@@ -29,8 +29,7 @@ interface ProgressRootContext {
   progressState: ComputedRef<ProgressState>
 }
 
-export const [injectProgressRootContext, provideProgressRootContext]
-  = createContext<ProgressRootContext>('ProgressRoot')
+export const progressRootContext = createContext<ProgressRootContext>('ProgressRoot')
 
 export type ProgressState = 'indeterminate' | 'loading' | 'complete'
 
@@ -120,7 +119,7 @@ const progressState = computed<ProgressState>(() => {
   return 'loading'
 })
 
-provideProgressRootContext({
+progressRootContext.provide({
   modelValue,
   max,
   progressState,

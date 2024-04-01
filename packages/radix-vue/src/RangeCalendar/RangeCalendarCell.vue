@@ -9,10 +9,10 @@ export interface RangeCalendarCellProps extends PrimitiveProps {
 
 <script setup lang="ts">
 import { Primitive } from '@/Primitive'
-import { injectRangeCalendarRootContext } from './RangeCalendarRoot.vue'
+import { rangeCalendarRootContext } from './RangeCalendarRoot.vue'
 
 withDefaults(defineProps<RangeCalendarCellProps>(), { as: 'td' })
-const rootContext = injectRangeCalendarRootContext()
+const rootContext = rangeCalendarRootContext.inject()
 </script>
 
 <template>

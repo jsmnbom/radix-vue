@@ -18,8 +18,7 @@ export interface ToolbarRootContext {
   dir: Ref<Direction>
 }
 
-export const [injectToolbarRootContext, provideToolbarRootContext]
-  = createContext<ToolbarRootContext>('ToolbarRoot')
+export const toolbarRootContext = createContext<ToolbarRootContext>('ToolbarRoot')
 </script>
 
 <script setup lang="ts">
@@ -34,7 +33,7 @@ const { orientation, dir: propDir } = toRefs(props)
 const dir = useDirection(propDir)
 const { forwardRef } = useForwardExpose()
 
-provideToolbarRootContext({ orientation, dir })
+toolbarRootContext.provide({ orientation, dir })
 </script>
 
 <template>

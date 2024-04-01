@@ -9,19 +9,19 @@ export interface SelectViewportProps extends PrimitiveProps {
 
 <script setup lang="ts">
 import { onMounted, ref } from 'vue'
-import { SelectContentDefaultContextValue, injectSelectContentContext } from './SelectContentImpl.vue'
+import { SelectContentDefaultContextValue, selectContentContext } from './SelectContentImpl.vue'
 import { CONTENT_MARGIN } from './utils'
 import {
   Primitive,
 } from '@/Primitive'
-import { injectSelectItemAlignedPositionContext } from './SelectItemAlignedPosition.vue'
+import { selectItemAlignedPositionContext } from './SelectItemAlignedPosition.vue'
 
 const props = defineProps<SelectViewportProps>()
 
-const contentContext = injectSelectContentContext(SelectContentDefaultContextValue)
+const contentContext = selectContentContext.inject(SelectContentDefaultContextValue)
 const alignedPositionContext
   = contentContext.position === 'item-aligned'
-    ? injectSelectItemAlignedPositionContext()
+    ? selectItemAlignedPositionContext.inject()
     : undefined
 
 const { forwardRef, currentElement } = useForwardExpose()

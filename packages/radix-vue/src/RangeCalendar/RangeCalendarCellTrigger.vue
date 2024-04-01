@@ -19,10 +19,10 @@ export interface RangeCalendarCellTriggerProps extends PrimitiveProps {
 
 <script setup lang="ts">
 import { Primitive, usePrimitiveElement } from '@/Primitive'
-import { injectRangeCalendarRootContext } from './RangeCalendarRoot.vue'
+import { rangeCalendarRootContext } from './RangeCalendarRoot.vue'
 
 const props = withDefaults(defineProps<RangeCalendarCellTriggerProps>(), { as: 'div' })
-const rootContext = injectRangeCalendarRootContext()
+const rootContext = rangeCalendarRootContext.inject()
 
 const kbd = useKbd()
 

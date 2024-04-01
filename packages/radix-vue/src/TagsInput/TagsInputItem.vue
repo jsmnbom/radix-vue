@@ -2,7 +2,7 @@
 import type { PrimitiveProps } from '@/Primitive'
 import { createContext, useForwardExpose } from '@/shared'
 import { type Ref, computed, toRefs } from 'vue'
-import { injectTagsInputRootContext } from './TagsInputRoot.vue'
+import { tagsInputRootContext } from './TagsInputRoot.vue'
 
 export interface TagsInputItemProps extends PrimitiveProps {
   /** Value associated with the tags */
@@ -18,8 +18,7 @@ export interface TagsInputItemContext {
   textId: string
 }
 
-export const [injectTagsInputItemContext, provideTagsInputItemContext]
-  = createContext<TagsInputItemContext>('TagsInputItem')
+export const tagsInputItemContext = createContext<TagsInputItemContext>('TagsInputItem')
 </script>
 
 <script setup lang="ts">
@@ -29,13 +28,13 @@ import { CollectionItem } from '@/Collection'
 const props = defineProps<TagsInputItemProps>()
 const { value } = toRefs(props)
 
-const context = injectTagsInputRootContext()
+const context = tagsInputRootContext.inject()
 const { forwardRef, currentElement } = useForwardExpose()
 const isSelected = computed(() => context.selectedElement.value === currentElement.value)
 
 const disabled = computed(() => props.disabled || context.disabled.value)
 
-const itemContext = provideTagsInputItemContext({
+const itemContext = tagsInputItemContext.provide({
   value,
   isSelected,
   disabled,

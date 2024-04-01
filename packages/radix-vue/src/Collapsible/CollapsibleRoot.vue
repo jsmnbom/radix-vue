@@ -24,8 +24,7 @@ interface CollapsibleRootContext {
   onOpenToggle(): void
 }
 
-export const [injectCollapsibleRootContext, provideCollapsibleRootContext]
-  = createContext<CollapsibleRootContext>('CollapsibleRoot')
+export const collapsibleRootContext = createContext<CollapsibleRootContext>('CollapsibleRoot')
 </script>
 
 <script setup lang="ts">
@@ -53,7 +52,7 @@ const open = useVModel(props, 'open', emit, {
 
 const disabled = useVModel(props, 'disabled')
 
-provideCollapsibleRootContext({
+collapsibleRootContext.provide({
   contentId: '',
   disabled,
   open,

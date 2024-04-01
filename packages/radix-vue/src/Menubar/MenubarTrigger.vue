@@ -10,8 +10,8 @@ export interface MenubarTriggerProps extends PrimitiveProps {
 
 <script setup lang="ts">
 import { computed, onMounted, ref } from 'vue'
-import { injectMenubarRootContext } from './MenubarRoot.vue'
-import { injectMenubarMenuContext } from './MenubarMenu.vue'
+import { menubarRootContext } from './MenubarRoot.vue'
+import { menubarMenuContext } from './MenubarMenu.vue'
 import {
   Primitive,
 } from '@/Primitive'
@@ -21,8 +21,8 @@ import { RovingFocusItem } from '@/RovingFocus'
 withDefaults(defineProps<MenubarTriggerProps>(), {
   as: 'button',
 })
-const rootContext = injectMenubarRootContext()
-const menuContext = injectMenubarMenuContext()
+const rootContext = menubarRootContext.inject()
+const menuContext = menubarMenuContext.inject()
 
 const { forwardRef, currentElement: triggerElement } = useForwardExpose()
 

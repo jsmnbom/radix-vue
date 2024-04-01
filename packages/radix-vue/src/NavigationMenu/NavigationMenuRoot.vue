@@ -67,8 +67,7 @@ export interface NavigationMenuContext {
   onItemDismiss(): void
 }
 
-export const [injectNavigationMenuContext, provideNavigationMenuContext]
-  = createContext<NavigationMenuContext>(['NavigationMenuRoot', 'NavigationMenuSub'], 'NavigationMenuContext')
+export const navigationMenuContext = createContext<NavigationMenuContext>(['NavigationMenuRoot', 'NavigationMenuSub'], 'NavigationMenuContext')
 </script>
 
 <script setup lang="ts">
@@ -123,7 +122,7 @@ const debouncedFn = useDebounceFn((val: string) => {
   modelValue.value = val
 }, computedDelay)
 
-provideNavigationMenuContext({
+navigationMenuContext.provide({
   isRootMenu: true,
   modelValue,
   previousValue,

@@ -31,7 +31,7 @@ export interface PopoverContentImplProps
 </script>
 
 <script setup lang="ts">
-import { injectPopoverRootContext } from './PopoverRoot.vue'
+import { popoverRootContext } from './PopoverRoot.vue'
 import { PopperContent } from '@/Popper'
 import { DismissableLayer } from '@/DismissableLayer'
 import { FocusScope } from '@/FocusScope'
@@ -43,7 +43,7 @@ const emits = defineEmits<PopoverContentImplEmits>()
 const forwarded = useForwardProps(props)
 const { forwardRef } = useForwardExpose()
 
-const rootContext = injectPopoverRootContext()
+const rootContext = popoverRootContext.inject()
 useFocusGuards()
 </script>
 

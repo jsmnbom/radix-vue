@@ -8,7 +8,7 @@ export interface PaginationListProps extends PrimitiveProps { }
 <script setup lang="ts">
 import { Primitive } from '@/Primitive'
 import { computed } from 'vue'
-import { injectPaginationRootContext } from './PaginationRoot.vue'
+import { paginationRootContext } from './PaginationRoot.vue'
 import { getRange, transform } from './utils'
 
 const props = defineProps<PaginationListProps>()
@@ -21,7 +21,7 @@ defineSlots<{
 }>()
 
 useForwardExpose()
-const rootContext = injectPaginationRootContext()
+const rootContext = paginationRootContext.inject()
 
 const transformedRange = computed(() => {
   return transform(

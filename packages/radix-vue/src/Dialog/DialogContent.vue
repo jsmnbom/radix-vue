@@ -18,14 +18,14 @@ export interface DialogContentProps extends DialogContentImplProps {
 <script setup lang="ts">
 import DialogContentModal from './DialogContentModal.vue'
 import DialogContentNonModal from './DialogContentNonModal.vue'
-import { injectDialogRootContext } from './DialogRoot.vue'
+import { dialogRootContext } from './DialogRoot.vue'
 import { Presence } from '@/Presence'
 import { useEmitAsProps, useForwardExpose } from '@/shared'
 
 const props = defineProps<DialogContentProps>()
 const emits = defineEmits<DialogContentEmits>()
 
-const rootContext = injectDialogRootContext()
+const rootContext = dialogRootContext.inject()
 
 const emitsAsProps = useEmitAsProps(emits)
 const { forwardRef } = useForwardExpose()

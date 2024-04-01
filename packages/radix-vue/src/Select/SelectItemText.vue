@@ -7,9 +7,9 @@ export interface SelectItemTextProps extends PrimitiveProps {}
 
 <script setup lang="ts">
 import { computed, h, onBeforeUnmount, onMounted } from 'vue'
-import { injectSelectNativeOptionsContext, injectSelectRootContext } from './SelectRoot.vue'
-import { SelectContentDefaultContextValue, injectSelectContentContext } from './SelectContentImpl.vue'
-import { injectSelectItemContext } from './SelectItem.vue'
+import { selectNativeOptionsContext, selectRootContext } from './SelectRoot.vue'
+import { SelectContentDefaultContextValue, selectContentContext } from './SelectContentImpl.vue'
+import { selectItemContext } from './SelectItem.vue'
 import { Primitive } from '@/Primitive'
 
 defineOptions({
@@ -20,10 +20,10 @@ const props = withDefaults(defineProps<SelectItemTextProps>(), {
   as: 'span',
 })
 
-const rootContext = injectSelectRootContext()
-const contentContext = injectSelectContentContext(SelectContentDefaultContextValue)
-const nativeOptionContext = injectSelectNativeOptionsContext()
-const itemContext = injectSelectItemContext()
+const rootContext = selectRootContext.inject()
+const contentContext = selectContentContext.inject(SelectContentDefaultContextValue)
+const nativeOptionContext = selectNativeOptionsContext.inject()
+const itemContext = selectItemContext.inject()
 
 const { forwardRef, currentElement: itemTextElement } = useForwardExpose()
 

@@ -6,7 +6,7 @@ export interface ScrollAreaScrollbarHoverProps extends ScrollAreaScrollbarAutoPr
 
 <script setup lang="ts">
 import { onMounted, onUnmounted, ref } from 'vue'
-import { injectScrollAreaRootContext } from './ScrollAreaRoot.vue'
+import { scrollAreaRootContext } from './ScrollAreaRoot.vue'
 import ScrollAreaScrollbarAuto from './ScrollAreaScrollbarAuto.vue'
 import { Presence } from '@/Presence'
 import { useForwardExpose } from '@/shared'
@@ -17,7 +17,7 @@ defineOptions({
 
 defineProps<ScrollAreaScrollbarHoverProps>()
 
-const rootContext = injectScrollAreaRootContext()
+const rootContext = scrollAreaRootContext.inject()
 
 const { forwardRef } = useForwardExpose()
 

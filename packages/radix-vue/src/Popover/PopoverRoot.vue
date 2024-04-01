@@ -35,8 +35,7 @@ export interface PopoverRootContext {
   hasCustomAnchor: Ref<boolean>
 }
 
-export const [injectPopoverRootContext, providePopoverRootContext]
-  = createContext<PopoverRootContext>('PopoverRoot')
+export const popoverRootContext = createContext<PopoverRootContext>('PopoverRoot')
 </script>
 
 <script setup lang="ts">
@@ -59,7 +58,7 @@ const open = useVModel(props, 'open', emit, {
 const triggerElement = ref<HTMLElement>()
 const hasCustomAnchor = ref(false)
 
-providePopoverRootContext({
+popoverRootContext.provide({
   contentId: '',
   modal,
   open,

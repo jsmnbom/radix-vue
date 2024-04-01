@@ -21,8 +21,7 @@ export interface ScrollAreaScollbarContext {
   asChild: Ref<boolean>
 }
 
-export const [injectScrollAreaScrollbarContext, provideScrollAreaScrollbarContext]
-  = createContext<ScrollAreaScollbarContext>('ScrollAreaScrollbar')
+export const scrollAreaScrollbarContext = createContext<ScrollAreaScollbarContext>('ScrollAreaScrollbar')
 </script>
 
 <script setup lang="ts">
@@ -32,7 +31,7 @@ import {
   toRefs,
   watch,
 } from 'vue'
-import { injectScrollAreaRootContext } from './ScrollAreaRoot.vue'
+import { scrollAreaRootContext } from './ScrollAreaRoot.vue'
 import ScrollAreaScrollbarHover from './ScrollAreaScrollbarHover.vue'
 import ScrollAreaScrollbarScroll from './ScrollAreaScrollbarScroll.vue'
 import ScrollAreaScrollbarAuto from './ScrollAreaScrollbarAuto.vue'
@@ -48,7 +47,7 @@ const props = withDefaults(defineProps<ScrollAreaScrollbarProps>(), {
 })
 
 const { forwardRef } = useForwardExpose()
-const rootContext = injectScrollAreaRootContext()
+const rootContext = scrollAreaRootContext.inject()
 
 const isHorizontal = computed(() => props.orientation === 'horizontal')
 
@@ -68,7 +67,7 @@ onUnmounted(() => {
 })
 
 const { orientation, forceMount, asChild, as } = toRefs(props)
-provideScrollAreaScrollbarContext({
+scrollAreaScrollbarContext.provide({
   orientation,
   forceMount,
   isHorizontal,

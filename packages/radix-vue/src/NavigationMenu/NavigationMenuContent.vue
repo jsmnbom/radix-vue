@@ -14,8 +14,8 @@ export interface NavigationMenuContentProps extends NavigationMenuContentImplPro
 
 <script setup lang="ts">
 import { computed } from 'vue'
-import { injectNavigationMenuContext } from './NavigationMenuRoot.vue'
-import { injectNavigationMenuItemContext } from './NavigationMenuItem.vue'
+import { navigationMenuContext } from './NavigationMenuRoot.vue'
+import { navigationMenuItemContext } from './NavigationMenuItem.vue'
 import { getOpenState, whenMouse } from './utils'
 import { Presence } from '@/Presence'
 import NavigationMenuContentImpl from './NavigationMenuContentImpl.vue'
@@ -33,8 +33,8 @@ const emitsAsProps = useEmitAsProps(emits)
 const { forwardRef } = useForwardExpose()
 
 const isClientMounted = useMounted()
-const menuContext = injectNavigationMenuContext()
-const itemContext = injectNavigationMenuItemContext()
+const menuContext = navigationMenuContext.inject()
+const itemContext = navigationMenuItemContext.inject()
 
 const open = computed(() => itemContext.value === menuContext.modelValue.value)
 

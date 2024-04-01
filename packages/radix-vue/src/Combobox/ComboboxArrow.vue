@@ -5,8 +5,8 @@ export interface ComboboxArrowProps extends PopperArrowProps {}
 </script>
 
 <script setup lang="ts">
-import { injectComboboxRootContext } from './ComboboxRoot.vue'
-import { injectComboboxContentContext } from './ComboboxContentImpl.vue'
+import { comboboxRootContext } from './ComboboxRoot.vue'
+import { comboboxContentContext } from './ComboboxContentImpl.vue'
 import { useForwardExpose } from '@/shared'
 import { PopperArrow } from '@/Popper'
 
@@ -15,8 +15,8 @@ const props = withDefaults(defineProps<ComboboxArrowProps>(), {
   height: 5,
   as: 'svg',
 })
-const rootContext = injectComboboxRootContext()
-const contentContext = injectComboboxContentContext()
+const rootContext = comboboxRootContext.inject()
+const contentContext = comboboxContentContext.inject()
 
 useForwardExpose()
 </script>

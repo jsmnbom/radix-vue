@@ -12,8 +12,8 @@ export interface NavigationMenuTriggerProps extends PrimitiveProps {
 <script setup lang="ts">
 import { computed, onMounted, ref } from 'vue'
 import { refAutoReset, unrefElement } from '@vueuse/core'
-import { injectNavigationMenuContext } from './NavigationMenuRoot.vue'
-import { injectNavigationMenuItemContext } from './NavigationMenuItem.vue'
+import { navigationMenuContext } from './NavigationMenuRoot.vue'
+import { navigationMenuItemContext } from './NavigationMenuItem.vue'
 import { getOpenState, makeContentId, makeTriggerId } from './utils'
 import {
   Primitive,
@@ -28,8 +28,8 @@ const props = withDefaults(defineProps<NavigationMenuTriggerProps>(), {
   as: 'button',
 })
 
-const menuContext = injectNavigationMenuContext()
-const itemContext = injectNavigationMenuItemContext()
+const menuContext = navigationMenuContext.inject()
+const itemContext = navigationMenuItemContext.inject()
 
 const { forwardRef, currentElement: triggerElement } = useForwardExpose()
 const triggerId = ref('')

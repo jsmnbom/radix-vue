@@ -11,12 +11,12 @@ export interface PaginationListItemProps extends PrimitiveProps {
 <script setup lang="ts">
 import { Primitive } from '@/Primitive'
 import { computed } from 'vue'
-import { injectPaginationRootContext } from './PaginationRoot.vue'
+import { paginationRootContext } from './PaginationRoot.vue'
 
 const props = withDefaults(defineProps<PaginationListItemProps>(), { as: 'button' })
 useForwardExpose()
 
-const rootContext = injectPaginationRootContext()
+const rootContext = paginationRootContext.inject()
 const isSelected = computed(() => rootContext.page.value === props.value)
 </script>
 

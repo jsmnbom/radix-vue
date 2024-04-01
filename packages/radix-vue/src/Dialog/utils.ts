@@ -1,11 +1,10 @@
 import { onMounted } from 'vue'
-import { injectDialogRootContext } from './DialogRoot.vue'
 
 export function useWarning() {
   const CONTENT_NAME = 'DialogContent'
   const TITLE_NAME = 'DialogTitle'
 
-  const rootContext = injectDialogRootContext()
+  const rootContext = dialogRootContext.inject()
 
   const TITLE_MESSAGE = `Warning: \`${CONTENT_NAME}\` requires a \`${TITLE_NAME}\` for the component to be accessible for screen reader users.
 

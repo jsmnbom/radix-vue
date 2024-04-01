@@ -1,6 +1,6 @@
 <script lang="ts">
 import type { PrimitiveProps } from '@/Primitive'
-import { injectTagsInputRootContext } from './TagsInputRoot.vue'
+import { tagsInputRootContext } from './TagsInputRoot.vue'
 import { useForwardExpose } from '@/shared'
 
 export interface TagsInputClearProps extends PrimitiveProps {}
@@ -14,7 +14,7 @@ const props = withDefaults(defineProps<TagsInputClearProps>(), {
 })
 
 useForwardExpose()
-const context = injectTagsInputRootContext()
+const context = tagsInputRootContext.inject()
 
 function handleCancel() {
   if (context.disabled.value)

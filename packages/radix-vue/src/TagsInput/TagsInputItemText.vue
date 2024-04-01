@@ -1,6 +1,6 @@
 <script lang="ts">
 import type { PrimitiveProps } from '@/Primitive'
-import { injectTagsInputItemContext } from './TagsInputItem.vue'
+import { tagsInputItemContext } from './TagsInputItem.vue'
 import { useForwardExpose, useId } from '@/shared'
 
 export interface TagsInputItemTextProps extends PrimitiveProps {}
@@ -13,7 +13,7 @@ const props = withDefaults(defineProps<TagsInputItemTextProps>(), {
   as: 'span',
 })
 
-const itemContext = injectTagsInputItemContext()
+const itemContext = tagsInputItemContext.inject()
 useForwardExpose()
 
 itemContext.textId ||= useId(undefined, 'radix-vue-tags-input-item-text')

@@ -12,13 +12,12 @@ interface CollectionContext<ItemData = {}> {
 const ITEM_DATA_ATTR = 'data-radix-vue-collection-item'
 
 // TODO: Not sure how to pass generic types here from provideCollectionContext
-export const [injectCollectionContext, provideCollectionContext]
-  = createContext<CollectionContext>('CollectionProvider')
+export const collectionContext = createContext<CollectionContext>('CollectionProvider')
 
 export function createCollection<ItemData = {}>(attrName = ITEM_DATA_ATTR) {
   const itemMap = ref<Map<HTMLElement, { ref: HTMLElement } & ItemData>>(new Map())
   const collectionRef = ref<HTMLElement>()
-  const context = provideCollectionContext({
+  const context = collectionContext.provide({
     collectionRef,
     itemMap,
     attrName,
@@ -30,10 +29,10 @@ export function createCollection<ItemData = {}>(attrName = ITEM_DATA_ATTR) {
   return { getItems, reactiveItems, itemMapSize }
 }
 
-export const CollectionSlot = defineComponent({
+export const CollectionSlot = /* @__PURE__ */ defineComponent({
   name: 'CollectionSlot',
   setup(_, { slots }) {
-    const context = injectCollectionContext()
+    const context = collectionContext.inject()
     const { primitiveElement, currentElement } = usePrimitiveElement()
     watch(currentElement, () => {
       context.collectionRef.value = currentElement.value
@@ -42,10 +41,10 @@ export const CollectionSlot = defineComponent({
   },
 })
 
-export const CollectionItem = defineComponent({
+export const CollectionItem = /* @__PURE__ */ defineComponent({
   name: 'CollectionItem',
   setup(_, { slots, attrs }) {
-    const context = injectCollectionContext()
+    const context = collectionContext.inject()
     const { primitiveElement, currentElement } = usePrimitiveElement()
     const vm = getCurrentInstance()
 
@@ -62,7 +61,7 @@ export const CollectionItem = defineComponent({
 })
 
 export function useCollection<ItemData = {}>(fallback?: CollectionContext<ItemData>) {
-  const context = fallback ?? injectCollectionContext() as CollectionContext<ItemData>
+  const context = fallback ?? collectionContext.inject() as CollectionContext<ItemData>
 
   const getItems = () => {
     const collectionNode = context.collectionRef.value

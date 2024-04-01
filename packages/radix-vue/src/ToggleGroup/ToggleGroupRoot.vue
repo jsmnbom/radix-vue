@@ -33,8 +33,7 @@ interface ToggleGroupRootContext {
   disabled?: Ref<boolean>
 }
 
-export const [injectToggleGroupRootContext, provideToggleGroupRootContext]
-  = createContext<ToggleGroupRootContext>('ToggleGroupRoot')
+export const toggleGroupRootContext = createContext<ToggleGroupRootContext>('ToggleGroupRoot')
 </script>
 
 <script setup lang="ts">
@@ -64,7 +63,7 @@ const { forwardRef } = useForwardExpose()
 
 const { modelValue, changeModelValue, isSingle } = useSingleOrMultipleValue(props, emits)
 
-provideToggleGroupRootContext({
+toggleGroupRootContext.provide({
   isSingle,
   modelValue,
   changeModelValue,

@@ -44,7 +44,7 @@ import { useEventListener } from '@vueuse/core'
 import { TOOLTIP_OPEN } from './utils'
 import { PopperContent } from '@/Popper'
 import { VisuallyHidden } from '@/VisuallyHidden'
-import { injectTooltipRootContext } from './TooltipRoot.vue'
+import { tooltipRootContext } from './TooltipRoot.vue'
 import { DismissableLayer } from '@/DismissableLayer'
 
 const props = withDefaults(defineProps<TooltipContentImplProps>(), {
@@ -60,7 +60,7 @@ const props = withDefaults(defineProps<TooltipContentImplProps>(), {
 })
 const emits = defineEmits<TooltipContentImplEmits>()
 
-const rootContext = injectTooltipRootContext()
+const rootContext = tooltipRootContext.inject()
 
 const { forwardRef } = useForwardExpose()
 const slot = useSlots()

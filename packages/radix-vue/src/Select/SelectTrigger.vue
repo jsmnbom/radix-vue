@@ -8,9 +8,7 @@ export interface SelectTriggerProps extends PrimitiveProps {
 
 <script setup lang="ts">
 import { computed, onMounted } from 'vue'
-import {
-  injectSelectRootContext,
-} from './SelectRoot.vue'
+import { selectRootContext } from './SelectRoot.vue'
 import { OPEN_KEYS, shouldShowPlaceholder } from './utils'
 import { Primitive } from '@/Primitive'
 import { PopperAnchor } from '@/Popper'
@@ -19,7 +17,7 @@ import { useCollection, useForwardExpose, useId, useTypeahead } from '@/shared'
 const props = withDefaults(defineProps<SelectTriggerProps>(), {
   as: 'button',
 })
-const rootContext = injectSelectRootContext()
+const rootContext = selectRootContext.inject()
 
 const isDisabled = computed(() => rootContext.disabled?.value || props.disabled)
 

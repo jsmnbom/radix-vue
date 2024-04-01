@@ -5,7 +5,7 @@ export interface HoverCardTriggerProps extends PrimitiveProps {}
 </script>
 
 <script setup lang="ts">
-import { injectHoverCardRootContext } from './HoverCardRoot.vue'
+import { hoverCardRootContext } from './HoverCardRoot.vue'
 import { Primitive } from '@/Primitive'
 import { PopperAnchor } from '@/Popper'
 import { useForwardExpose } from '@/shared'
@@ -16,7 +16,7 @@ withDefaults(defineProps<HoverCardTriggerProps>(), {
 })
 
 const { forwardRef, currentElement } = useForwardExpose()
-const rootContext = injectHoverCardRootContext()
+const rootContext = hoverCardRootContext.inject()
 rootContext.triggerElement = currentElement
 </script>
 

@@ -34,7 +34,7 @@ export interface DialogContentImplProps extends DismissableLayerProps {
 </script>
 
 <script setup lang="ts">
-import { injectDialogRootContext } from './DialogRoot.vue'
+import { dialogRootContext } from './DialogRoot.vue'
 import { DismissableLayer } from '@/DismissableLayer'
 import { FocusScope } from '@/FocusScope'
 import { getOpenState } from '@/Menu/utils'
@@ -44,7 +44,7 @@ import { onMounted } from 'vue'
 const props = defineProps<DialogContentImplProps>()
 const emits = defineEmits<DialogContentImplEmits>()
 
-const rootContext = injectDialogRootContext()
+const rootContext = dialogRootContext.inject()
 const { forwardRef, currentElement: contentElement } = useForwardExpose()
 
 rootContext.titleId ||= useId(undefined, 'radix-vue-dialog-title')

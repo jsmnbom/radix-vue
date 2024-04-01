@@ -7,11 +7,11 @@ export interface SliderTrackProps extends PrimitiveProps {}
 
 <script setup lang="ts">
 import { Primitive } from '@/Primitive'
-import { injectSliderRootContext } from './SliderRoot.vue'
+import { sliderRootContext } from './SliderRoot.vue'
 
 withDefaults(defineProps<SliderTrackProps>(), { as: 'span' })
 
-const rootContext = injectSliderRootContext()
+const rootContext = sliderRootContext.inject()
 
 useForwardExpose()
 </script>

@@ -13,14 +13,14 @@ export interface MenuItemImplProps extends PrimitiveProps {
 <script setup lang="ts">
 import { nextTick, ref } from 'vue'
 import { isMouseEvent } from './utils'
-import { injectMenuContentContext } from './MenuContentImpl.vue'
+import { menuContentContext } from './MenuContentImpl.vue'
 import {
   Primitive,
 } from '@/Primitive'
 
 const props = defineProps<MenuItemImplProps>()
 
-const contentContext = injectMenuContentContext()
+const contentContext = menuContentContext.inject()
 
 const isFocused = ref(false)
 

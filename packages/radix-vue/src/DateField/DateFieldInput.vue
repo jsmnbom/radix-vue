@@ -1,7 +1,7 @@
 <script lang="ts">
 import { Primitive, type PrimitiveProps } from '@/Primitive'
 import { type SegmentPart } from '@/shared/date'
-import { injectDateFieldRootContext } from './DateFieldRoot.vue'
+import { dateFieldRootContext } from './DateFieldRoot.vue'
 import { computed, ref } from 'vue'
 import { useDateField } from './useDateField'
 
@@ -14,7 +14,7 @@ export interface DateFieldInputProps extends PrimitiveProps {
 <script setup lang="ts">
 const props = defineProps<DateFieldInputProps>()
 
-const rootContext = injectDateFieldRootContext()
+const rootContext = dateFieldRootContext.inject()
 
 const hasLeftFocus = ref(true)
 const lastKeyZero = ref(false)

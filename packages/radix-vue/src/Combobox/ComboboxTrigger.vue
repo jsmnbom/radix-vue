@@ -11,14 +11,14 @@ export interface ComboboxTriggerProps extends PrimitiveProps {
 import { Primitive } from '@/Primitive'
 import { useForwardExpose } from '@/shared'
 import { computed } from 'vue'
-import { injectComboboxRootContext } from './ComboboxRoot.vue'
+import { comboboxRootContext } from './ComboboxRoot.vue'
 
 const props = withDefaults(defineProps<ComboboxTriggerProps>(), {
   as: 'button',
 })
 
 useForwardExpose()
-const rootContext = injectComboboxRootContext()
+const rootContext = comboboxRootContext.inject()
 const disabled = computed(() => props.disabled || rootContext.disabled.value || false)
 </script>
 

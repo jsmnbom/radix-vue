@@ -18,14 +18,14 @@ export interface PopoverContentProps extends PopoverContentImplProps {
 <script setup lang="ts">
 import PopoverContentModal from './PopoverContentModal.vue'
 import PopoverContentNonModal from './PopoverContentNonModal.vue'
-import { injectPopoverRootContext } from './PopoverRoot.vue'
+import { popoverRootContext } from './PopoverRoot.vue'
 import { useForwardExpose, useForwardPropsEmits, useId } from '@/shared'
 import { Presence } from '@/Presence'
 
 const props = defineProps<PopoverContentProps>()
 const emits = defineEmits<PopoverContentEmits>()
 
-const rootContext = injectPopoverRootContext()
+const rootContext = popoverRootContext.inject()
 
 const forwarded = useForwardPropsEmits(props, emits)
 const { forwardRef } = useForwardExpose()

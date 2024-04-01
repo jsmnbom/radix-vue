@@ -11,6 +11,7 @@ import type {
   DismissableLayerProps,
 } from '@/DismissableLayer'
 import type { PopperContentProps } from '@/Popper'
+import { PopperContent, PopperContentPropsDefaultValue } from '@/Popper'
 
 import {
   createContext,
@@ -31,8 +32,7 @@ export interface MenuContentContext {
   onPointerGraceIntentChange(intent: GraceIntent | null): void
 }
 
-export const [injectMenuContentContext, provideMenuContentContext]
-  = createContext<MenuContentContext>('MenuContent')
+export const menuContentContext = createContext<MenuContentContext>('MenuContent')
 
 export interface MenuContentImplPrivateProps {
   /**
@@ -82,6 +82,10 @@ export interface MenuContentImplProps
 
 export interface MenuRootContentTypeProps
   extends Omit<MenuContentImplProps, 'disableOutsidePointerEvents' | 'disableOutsideScroll' | 'trapFocus'> {}
+
+const defaultProps = /* @__PURE__ */ (() => ({
+  ...PopperContentPropsDefaultValue,
+}))()
 </script>
 
 <script setup lang="ts">
@@ -91,7 +95,7 @@ import {
   toRefs,
   watch,
 } from 'vue'
-import { injectMenuContext, injectMenuRootContext } from './MenuRoot.vue'
+import { menuContext as MenuContext, menuRootContext } from './MenuRoot.vue'
 import {
   FIRST_LAST_KEYS,
   LAST_KEYS,
@@ -102,18 +106,12 @@ import {
 } from './utils'
 import { FocusScope } from '@/FocusScope'
 import { DismissableLayer } from '@/DismissableLayer'
-import {
-  PopperContent,
-  PopperContentPropsDefaultValue,
-} from '@/Popper'
 import { RovingFocusGroup } from '@/RovingFocus'
 
-const props = withDefaults(defineProps<MenuContentImplProps>(), {
-  ...PopperContentPropsDefaultValue,
-})
+const props = withDefaults(defineProps<MenuContentImplProps>(), defaultProps)
 const emits = defineEmits<MenuContentImplPrivateEmits>()
-const menuContext = injectMenuContext()
-const rootContext = injectMenuRootContext()
+const menuContext = MenuContext.inject()
+const rootContext = menuRootContext.inject()
 
 const { trapFocus, disableOutsidePointerEvents, loop } = toRefs(props)
 
@@ -238,7 +236,7 @@ function handlePointerMove(event: PointerEvent) {
   }
 }
 
-provideMenuContentContext({
+menuContentContext.provide({
   onItemEnter: (event) => {
     // event.preventDefault() we can't prevent pointerMove event
     if (isPointerMovingToSubmenu(event))

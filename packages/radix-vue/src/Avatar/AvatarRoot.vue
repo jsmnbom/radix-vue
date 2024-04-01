@@ -10,8 +10,7 @@ export type AvatarRootContext = {
   imageLoadingStatus: Ref<ImageLoadingStatus>
 }
 
-export const [injectAvatarRootContext, provideAvatarRootContext]
-  = createContext<AvatarRootContext>('AvatarRoot')
+export const avatarRootContext = createContext<AvatarRootContext>('AvatarRoot')
 </script>
 
 <script setup lang="ts">
@@ -24,7 +23,7 @@ withDefaults(defineProps<AvatarRootProps>(), {
 
 useForwardExpose()
 
-provideAvatarRootContext({
+avatarRootContext.provide({
   imageLoadingStatus: ref<ImageLoadingStatus>('loading'),
 })
 </script>

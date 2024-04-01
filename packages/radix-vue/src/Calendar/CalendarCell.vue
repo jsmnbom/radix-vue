@@ -10,10 +10,10 @@ export interface CalendarCellProps extends PrimitiveProps {
 
 <script setup lang="ts">
 import { Primitive } from '@/Primitive'
-import { injectCalendarRootContext } from './CalendarRoot.vue'
+import { calendarRootContext } from './CalendarRoot.vue'
 
 withDefaults(defineProps<CalendarCellProps>(), { as: 'td' })
-const rootContext = injectCalendarRootContext()
+const rootContext = calendarRootContext.inject()
 </script>
 
 <template>

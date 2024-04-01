@@ -21,7 +21,7 @@ export interface ToastViewportProps extends PrimitiveProps {
 <script setup lang="ts">
 import { computed, onMounted, ref, toRefs, watchEffect } from 'vue'
 import { Primitive } from '@/Primitive'
-import { injectToastProviderContext } from './ToastProvider.vue'
+import { toastProviderContext } from './ToastProvider.vue'
 import { onKeyStroke, unrefElement } from '@vueuse/core'
 import FocusProxy from './FocusProxy.vue'
 import { focusFirst, getTabbableCandidates } from '@/FocusScope/utils'
@@ -43,7 +43,7 @@ const { hotkey, label } = toRefs(props)
 const { forwardRef, currentElement } = useForwardExpose()
 const { createCollection } = useCollection()
 const collections = createCollection(currentElement)
-const providerContext = injectToastProviderContext()
+const providerContext = toastProviderContext.inject()
 const hasToasts = computed(() => providerContext.toastCount.value > 0)
 const headFocusProxyRef = ref<HTMLElement>()
 const tailFocusProxyRef = ref<HTMLElement>()

@@ -7,14 +7,14 @@ export interface CollapsibleTriggerProps extends PrimitiveProps {}
 
 <script setup lang="ts">
 import { Primitive } from '@/Primitive'
-import { injectCollapsibleRootContext } from './CollapsibleRoot.vue'
+import { collapsibleRootContext } from './CollapsibleRoot.vue'
 
 const props = withDefaults(defineProps<CollapsibleTriggerProps>(), {
   as: 'button',
 })
 
 useForwardExpose()
-const rootContext = injectCollapsibleRootContext()
+const rootContext = collapsibleRootContext.inject()
 </script>
 
 <template>

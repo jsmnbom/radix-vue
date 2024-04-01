@@ -4,12 +4,12 @@ import PopoverContentImpl, {
   type PopoverContentImplEmits,
   type PopoverContentImplProps,
 } from './PopoverContentImpl.vue'
-import { injectPopoverRootContext } from './PopoverRoot.vue'
+import { popoverRootContext } from './PopoverRoot.vue'
 import { useBodyScrollLock, useForwardExpose, useForwardPropsEmits, useHideOthers } from '@/shared'
 
 const props = defineProps<PopoverContentImplProps>()
 const emits = defineEmits<PopoverContentImplEmits>()
-const rootContext = injectPopoverRootContext()
+const rootContext = popoverRootContext.inject()
 const isRightClickOutsideRef = ref(false)
 
 useBodyScrollLock(true)

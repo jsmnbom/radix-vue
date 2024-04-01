@@ -14,7 +14,7 @@ export interface ComboboxInputProps extends PrimitiveProps {
 
 <script setup lang="ts">
 import { computed, onMounted } from 'vue'
-import { injectComboboxRootContext } from './ComboboxRoot.vue'
+import { comboboxRootContext } from './ComboboxRoot.vue'
 import { Primitive } from '@/Primitive'
 
 const props = withDefaults(defineProps<ComboboxInputProps>(), {
@@ -22,7 +22,7 @@ const props = withDefaults(defineProps<ComboboxInputProps>(), {
   as: 'input',
 })
 
-const rootContext = injectComboboxRootContext()
+const rootContext = comboboxRootContext.inject()
 
 const { forwardRef, currentElement } = useForwardExpose()
 onMounted(() => {

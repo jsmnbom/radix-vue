@@ -75,8 +75,7 @@ export type DateFieldRootEmits = {
   'update:placeholder': [date: DateValue]
 }
 
-export const [injectDateFieldRootContext, provideDateFieldRootContext]
-  = createContext<DateFieldRootContext>('DateFieldRoot')
+export const dateFieldRootContext = createContext<DateFieldRootContext>('DateFieldRoot')
 </script>
 
 <script setup lang="ts">
@@ -229,7 +228,7 @@ function setFocusedElement(el: HTMLElement) {
   currentFocusedElement.value = el
 }
 
-provideDateFieldRootContext({
+dateFieldRootContext.provide({
   isDateUnavailable: propsIsDateUnavailable.value,
   locale,
   modelValue,

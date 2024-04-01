@@ -36,8 +36,7 @@ export type PaginationRootEmits = {
   'update:page': [value: number]
 }
 
-export const [injectPaginationRootContext, providePaginationRootContext]
-  = createContext<PaginationRootContext>('PaginationRoot')
+export const paginationRootContext = createContext<PaginationRootContext>('PaginationRoot')
 </script>
 
 <script setup lang="ts">
@@ -74,7 +73,7 @@ const page = useVModel(props, 'page', emits, {
 
 const pageCount = computed(() => Math.ceil(props.total / props.itemsPerPage))
 
-providePaginationRootContext({
+paginationRootContext.provide({
   page,
   onPageChange(value) {
     page.value = value

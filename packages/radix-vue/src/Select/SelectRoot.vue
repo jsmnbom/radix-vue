@@ -48,16 +48,14 @@ export interface SelectRootContext {
   disabled?: Ref<boolean>
 }
 
-export const [injectSelectRootContext, provideSelectRootContext]
-  = createContext<SelectRootContext>('SelectRoot')
+export const selectRootContext = createContext<SelectRootContext>('SelectRoot')
 
 export interface SelectNativeOptionsContext {
   onNativeOptionAdd(option: VNode): void
   onNativeOptionRemove(option: VNode): void
 }
 
-export const [injectSelectNativeOptionsContext, provideSelectNativeOptionsContext]
-  = createContext<SelectNativeOptionsContext>('SelectRoot')
+export const selectNativeOptionsContext = createContext<SelectNativeOptionsContext>('SelectRoot')
 </script>
 
 <script setup lang="ts">
@@ -94,7 +92,7 @@ const valueElementHasChildren = ref(false)
 
 const { required, disabled, dir: propDir } = toRefs(props)
 const dir = useDirection(propDir)
-provideSelectRootContext({
+selectRootContext.provide({
   triggerElement,
   onTriggerChange: (node) => {
     triggerElement.value = node
@@ -136,7 +134,7 @@ const nativeSelectKey = computed(() => {
     .join(';')
 })
 
-provideSelectNativeOptionsContext({
+selectNativeOptionsContext.provide({
   onNativeOptionAdd: (option) => {
     nativeOptionsSet.value.add(option)
   },

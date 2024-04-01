@@ -23,7 +23,7 @@ export interface NavigationMenuSubProps extends PrimitiveProps {
 <script setup lang="ts">
 import { ref } from 'vue'
 import { useVModel } from '@vueuse/core'
-import { injectNavigationMenuContext, provideNavigationMenuContext } from './NavigationMenuRoot.vue'
+import { navigationMenuContext } from './NavigationMenuRoot.vue'
 import {
   Primitive,
 } from '@/Primitive'
@@ -40,7 +40,7 @@ const modelValue = useVModel(props, 'modelValue', emits, {
 }) as Ref<string>
 const previousValue = ref('')
 
-const menuContext = injectNavigationMenuContext()
+const menuContext = navigationMenuContext.inject()
 const { forwardRef, currentElement } = useForwardExpose()
 
 const indicatorTrack = ref<HTMLElement>()
@@ -49,7 +49,7 @@ const viewport = ref<HTMLElement>()
 const { createCollection } = useCollection('nav')
 createCollection(indicatorTrack)
 
-provideNavigationMenuContext({
+navigationMenuContext.provide({
   ...menuContext,
   isRootMenu: false,
   modelValue,

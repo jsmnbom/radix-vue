@@ -11,14 +11,14 @@ export interface AvatarFallbackProps extends PrimitiveProps {
 <script setup lang="ts">
 import { ref, watch } from 'vue'
 import { Primitive } from '@/Primitive'
-import { injectAvatarRootContext } from './AvatarRoot.vue'
+import { avatarRootContext } from './AvatarRoot.vue'
 
 const props = withDefaults(defineProps<AvatarFallbackProps>(), {
   delayMs: 0,
   as: 'span',
 })
 
-const rootContext = injectAvatarRootContext()
+const rootContext = avatarRootContext.inject()
 useForwardExpose()
 
 const canRender = ref(false)

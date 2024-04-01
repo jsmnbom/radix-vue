@@ -18,14 +18,13 @@ export interface ScrollAreaScrollbarVisibleContext {
   onThumbChange: (element: HTMLElement) => void
 }
 
-export const [injectScrollAreaScrollbarVisibleContext, provideScrollAreaScrollbarVisibleContext]
-  = createContext<ScrollAreaScrollbarVisibleContext>('ScrollAreaScrollbarVisible')
+export const scrollAreaScrollbarVisibleContext = createContext<ScrollAreaScrollbarVisibleContext>('ScrollAreaScrollbarVisible')
 </script>
 
 <script setup lang="ts">
 import { computed, ref } from 'vue'
-import { injectScrollAreaRootContext } from './ScrollAreaRoot.vue'
-import { injectScrollAreaScrollbarContext } from './ScrollAreaScrollbar.vue'
+import { scrollAreaRootContext } from './ScrollAreaRoot.vue'
+import { scrollAreaScrollbarContext } from './ScrollAreaScrollbar.vue'
 import ScrollAreaScrollbarX from './ScrollAreaScrollbarX.vue'
 import ScrollAreaScrollbarY from './ScrollAreaScrollbarY.vue'
 import {
@@ -35,8 +34,8 @@ import {
   isScrollingWithinScrollbarBounds,
 } from './utils'
 
-const rootContext = injectScrollAreaRootContext()
-const scrollbarContext = injectScrollAreaScrollbarContext()
+const rootContext = scrollAreaRootContext.inject()
+const scrollbarContext = scrollAreaScrollbarContext.inject()
 const { forwardRef } = useForwardExpose()
 
 const sizes = ref<Sizes>({
@@ -134,7 +133,7 @@ function onThumbChange(element: HTMLElement) {
   thumbRef.value = element
 }
 
-provideScrollAreaScrollbarVisibleContext({
+scrollAreaScrollbarVisibleContext.provide({
   sizes,
   hasThumb,
   handleWheelScroll,

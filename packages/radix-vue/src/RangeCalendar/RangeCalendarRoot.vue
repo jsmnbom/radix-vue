@@ -93,8 +93,7 @@ export type RangeCalendarRootEmits = {
   'update:placeholder': [date: DateValue]
 }
 
-export const [injectRangeCalendarRootContext, provideRangeCalendarRootContext]
-  = createContext<RangeCalendarRootContext>('RangeCalendarRoot')
+export const rangeCalendarRootContext = createContext<RangeCalendarRootContext>('RangeCalendarRoot')
 </script>
 
 <script setup lang="ts">
@@ -286,7 +285,7 @@ const getYears = useMemoize(({ startIndex, endIndex }: { startIndex?: number; en
   })
 })
 
-provideRangeCalendarRootContext({
+rangeCalendarRootContext.provide({
   isDateUnavailable,
   startValue,
   endValue,

@@ -13,8 +13,7 @@ interface TooltipProviderContext {
   ignoreNonKeyboardFocus: Ref<boolean>
 }
 
-export const [injectTooltipProviderContext, provideTooltipProviderContext]
-  = createContext<TooltipProviderContext>('TooltipProvider')
+export const tooltipProviderContext = createContext<TooltipProviderContext>('TooltipProvider')
 
 export interface TooltipProviderProps {
   /**
@@ -69,7 +68,7 @@ const { start: startTimer, stop: clearTimer } = useTimeoutFn(() => {
   isOpenDelayed.value = true
 }, skipDelayDuration, { immediate: false })
 
-provideTooltipProviderContext({
+tooltipProviderContext.provide({
   isOpenDelayed,
   delayDuration,
   onOpen() {

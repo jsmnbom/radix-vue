@@ -15,14 +15,14 @@ export interface SliderImplProps extends PrimitiveProps {}
 
 <script setup lang="ts">
 import { Primitive } from '@/Primitive'
-import { injectSliderRootContext } from './SliderRoot.vue'
+import { sliderRootContext } from './SliderRoot.vue'
 import { ARROW_KEYS, PAGE_KEYS } from './utils'
 
 const props = withDefaults(defineProps<SliderImplProps>(), {
   as: 'span',
 })
 const emits = defineEmits<SliderImplEmits>()
-const rootContext = injectSliderRootContext()
+const rootContext = sliderRootContext.inject()
 </script>
 
 <template>

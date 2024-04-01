@@ -56,8 +56,7 @@ export interface TagsInputRootContext {
   id: Ref<string | undefined> | undefined
 }
 
-export const [injectTagsInputRootContext, provideTagsInputRootContext]
-  = createContext<TagsInputRootContext>('TagsInputRoot')
+export const tagsInputRootContext = createContext<TagsInputRootContext>('TagsInputRoot')
 </script>
 
 <script setup lang="ts">
@@ -98,7 +97,7 @@ const { getItems } = createCollection()
 const selectedElement = ref<HTMLElement>()
 const isInvalidInput = ref(false)
 
-provideTagsInputRootContext({
+tagsInputRootContext.provide({
   modelValue,
   onAddValue: (payload) => {
     if ((modelValue.value.length >= max.value) && !!max.value) {

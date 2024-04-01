@@ -11,7 +11,7 @@ export interface DropdownMenuContentProps extends MenuContentProps {}
 
 <script setup lang="ts">
 import { ref } from 'vue'
-import { injectDropdownMenuRootContext } from './DropdownMenuRoot.vue'
+import { dropdownMenuRootContext } from './DropdownMenuRoot.vue'
 import { MenuContent } from '@/Menu'
 import { useForwardExpose, useForwardPropsEmits, useId } from '@/shared'
 
@@ -20,7 +20,7 @@ const emits = defineEmits<DropdownMenuContentEmits>()
 const forwarded = useForwardPropsEmits(props, emits)
 useForwardExpose()
 
-const rootContext = injectDropdownMenuRootContext()
+const rootContext = dropdownMenuRootContext.inject()
 
 const hasInteractedOutsideRef = ref(false)
 

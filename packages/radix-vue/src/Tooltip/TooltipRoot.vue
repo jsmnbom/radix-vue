@@ -60,8 +60,7 @@ export interface TooltipContext {
   ignoreNonKeyboardFocus: Ref<boolean>
 }
 
-export const [injectTooltipRootContext, provideTooltipRootContext]
-  = createContext<TooltipContext>('TooltipRoot')
+export const tooltipRootContext = createContext<TooltipContext>('TooltipRoot')
 </script>
 
 <script setup lang="ts">
@@ -69,7 +68,7 @@ import { useTimeoutFn, useVModel } from '@vueuse/core'
 import { computed, ref, watch } from 'vue'
 import { PopperRoot } from '@/Popper'
 import { TOOLTIP_OPEN } from './utils'
-import { injectTooltipProviderContext } from './TooltipProvider.vue'
+import { tooltipProviderContext } from './TooltipProvider.vue'
 
 const props = withDefaults(defineProps<TooltipRootProps>(), {
   defaultOpen: false,
@@ -83,7 +82,7 @@ const props = withDefaults(defineProps<TooltipRootProps>(), {
 const emit = defineEmits<TooltipRootEmits>()
 
 useForwardExpose()
-const providerContext = injectTooltipProviderContext()
+const providerContext = tooltipProviderContext.inject()
 
 const disableHoverableContent = computed(() => props.disableHoverableContent ?? providerContext.disableHoverableContent.value)
 const disableClosingTrigger = computed(() => props.disableClosingTrigger ?? providerContext.disableClosingTrigger.value)
@@ -136,7 +135,7 @@ function handleDelayedOpen() {
   startTimer()
 }
 
-provideTooltipRootContext({
+tooltipRootContext.provide({
   contentId: '',
   open,
   stateAttribute,

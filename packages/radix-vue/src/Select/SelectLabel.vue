@@ -8,13 +8,13 @@ export interface SelectLabelProps extends PrimitiveProps {
 
 <script setup lang="ts">
 import { Primitive } from '@/Primitive'
-import { injectSelectGroupContext } from './SelectGroup.vue'
+import { selectGroupContext } from './SelectGroup.vue'
 
 const props = withDefaults(defineProps<SelectLabelProps>(), {
   as: 'div',
 })
 
-const groupContext = injectSelectGroupContext({ id: '' })
+const groupContext = selectGroupContext.inject({ id: '' })
 </script>
 
 <template>

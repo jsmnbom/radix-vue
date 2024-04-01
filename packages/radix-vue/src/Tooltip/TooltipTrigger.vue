@@ -12,18 +12,18 @@ export interface TooltipTriggerProps extends PrimitiveProps {}
 
 <script setup lang="ts">
 import { onMounted, ref } from 'vue'
-import { injectTooltipRootContext } from './TooltipRoot.vue'
+import { tooltipRootContext } from './TooltipRoot.vue'
 import { PopperAnchor } from '@/Popper'
 import {
   Primitive,
 } from '@/Primitive'
-import { injectTooltipProviderContext } from './TooltipProvider.vue'
+import { tooltipProviderContext } from './TooltipProvider.vue'
 
 const props = withDefaults(defineProps<TooltipTriggerProps>(), {
   as: 'button',
 })
-const rootContext = injectTooltipRootContext()
-const providerContext = injectTooltipProviderContext()
+const rootContext = tooltipRootContext.inject()
+const providerContext = tooltipProviderContext.inject()
 
 rootContext.contentId ||= useId(undefined, 'radix-vue-tooltip-content')
 

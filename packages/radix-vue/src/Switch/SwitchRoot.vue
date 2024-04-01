@@ -30,8 +30,7 @@ export interface SwitchRootContext {
   disabled: Ref<boolean>
 }
 
-export const [injectSwitchRootContext, provideSwitchRootContext]
-  = createContext<SwitchRootContext>('SwitchRoot')
+export const switchRootContext = createContext<SwitchRootContext>('SwitchRoot')
 </script>
 
 <script setup lang="ts">
@@ -63,7 +62,7 @@ const { forwardRef, currentElement } = useForwardExpose()
 const isFormControl = useFormControl(currentElement)
 const ariaLabel = computed(() => props.id && currentElement.value ? (document.querySelector(`[for="${props.id}"]`) as HTMLLabelElement)?.innerText : undefined)
 
-provideSwitchRootContext({
+switchRootContext.provide({
   checked,
   toggleCheck,
   disabled,

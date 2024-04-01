@@ -11,8 +11,7 @@ export interface MenuSubContext {
   parentMenuContext?: MenuContext
 }
 
-export const [injectMenuSubContext, provideMenuSubContext]
-  = createContext<MenuSubContext>('MenuSub')
+export const menuSubContext = createContext<MenuSubContext>('MenuSub')
 
 export interface MenuSubProps {
   /** The controlled open state of the menu. Can be used as `v-model:open`. */
@@ -31,7 +30,7 @@ import {
   watchEffect,
 } from 'vue'
 import { useVModel } from '@vueuse/core'
-import { injectMenuContext, provideMenuContext } from './MenuRoot.vue'
+import { menuContext } from './MenuRoot.vue'
 import { PopperRoot } from '@/Popper'
 
 const props = withDefaults(defineProps<MenuSubProps>(), {
@@ -44,7 +43,7 @@ const open = useVModel(props, 'open', emits, {
   passive: (props.open === undefined) as false,
 }) as Ref<boolean>
 
-const parentMenuContext = injectMenuContext()
+const parentMenuContext = menuContext.inject()
 const trigger = ref<HTMLElement>()
 const content = ref<HTMLElement>()
 
@@ -55,7 +54,7 @@ watchEffect((cleanupFn) => {
   cleanupFn(() => (open.value = false))
 })
 
-provideMenuContext({
+menuContext.provide({
   open,
   onOpenChange: (value) => {
     open.value = value
@@ -66,7 +65,7 @@ provideMenuContext({
   },
 })
 
-provideMenuSubContext({
+menuSubContext.provide({
   triggerId: '',
   contentId: '',
   trigger,

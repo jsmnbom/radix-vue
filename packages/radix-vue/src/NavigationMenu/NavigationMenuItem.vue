@@ -22,13 +22,12 @@ export type NavigationMenuItemContext = {
   onRootContentClose(): void
 }
 
-export const [injectNavigationMenuItemContext, provideNavigationMenuItemContext]
-  = createContext<NavigationMenuItemContext>('NavigationMenuItem')
+export const navigationMenuItemContext = createContext<NavigationMenuItemContext>('NavigationMenuItem')
 </script>
 
 <script setup lang="ts">
 import { ref } from 'vue'
-import { injectNavigationMenuContext } from './NavigationMenuRoot.vue'
+import { navigationMenuContext } from './NavigationMenuRoot.vue'
 import { Primitive } from '@/Primitive'
 import {
   focusFirst,
@@ -45,7 +44,7 @@ useForwardExpose()
 const { injectCollection } = useCollection('nav')
 const collectionItems = injectCollection()
 
-const context = injectNavigationMenuContext()
+const context = navigationMenuContext.inject()
 
 const value = useId(props.value)
 const triggerRef = ref<HTMLElement>()
@@ -75,7 +74,7 @@ function handleContentExit() {
   }
 }
 
-provideNavigationMenuItemContext({
+navigationMenuItemContext.provide({
   value,
   contentId,
   triggerRef,

@@ -13,7 +13,7 @@ export interface NavigationMenuIndicatorProps extends PrimitiveProps {
 <script setup lang="ts">
 import { computed, ref, watchEffect } from 'vue'
 import { useResizeObserver } from '@vueuse/core'
-import { injectNavigationMenuContext } from './NavigationMenuRoot.vue'
+import { navigationMenuContext } from './NavigationMenuRoot.vue'
 import { useCollection, useForwardExpose } from '@/shared'
 import { Primitive } from '@/Primitive'
 import { Presence } from '@/Presence'
@@ -27,7 +27,7 @@ const props = defineProps<NavigationMenuIndicatorProps>()
 const { forwardRef } = useForwardExpose()
 const { injectCollection } = useCollection('nav')
 const collectionItems = injectCollection()
-const menuContext = injectNavigationMenuContext()
+const menuContext = navigationMenuContext.inject()
 
 const position = ref<{ size: number; offset: number }>()
 const isHorizontal = computed(() => menuContext.orientation === 'horizontal')

@@ -14,14 +14,14 @@ export interface TagsInputInputProps extends PrimitiveProps {
 
 <script setup lang="ts">
 import { nextTick, onMounted } from 'vue'
-import { injectTagsInputRootContext } from './TagsInputRoot.vue'
+import { tagsInputRootContext } from './TagsInputRoot.vue'
 import { Primitive } from '@/Primitive'
 
 const props = withDefaults(defineProps<TagsInputInputProps>(), {
   as: 'input',
 })
 
-const context = injectTagsInputRootContext()
+const context = tagsInputRootContext.inject()
 const { forwardRef, currentElement } = useForwardExpose()
 
 function handleBlur(event: Event) {

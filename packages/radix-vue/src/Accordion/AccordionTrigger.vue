@@ -6,15 +6,15 @@ export interface AccordionTriggerProps extends PrimitiveProps {}
 
 <script setup lang="ts">
 import { useId } from '@/shared'
-import { injectAccordionItemContext } from './AccordionItem.vue'
-import { injectAccordionRootContext } from './AccordionRoot.vue'
+import { accordionItemContext } from './AccordionItem.vue'
+import { accordionRootContext } from './AccordionRoot.vue'
 
 import { CollapsibleTrigger } from '@/Collapsible'
 
 const props = defineProps<AccordionTriggerProps>()
 
-const rootContext = injectAccordionRootContext()
-const itemContext = injectAccordionItemContext()
+const rootContext = accordionRootContext.inject()
+const itemContext = accordionItemContext.inject()
 
 itemContext.triggerId ||= useId(undefined, 'radix-vue-accordion-trigger')
 function changeItem() {

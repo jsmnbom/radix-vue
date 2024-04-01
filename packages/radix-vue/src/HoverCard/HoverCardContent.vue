@@ -13,7 +13,7 @@ export interface HoverCardContentProps extends HoverCardContentImplProps {
 </script>
 
 <script setup lang="ts">
-import { injectHoverCardRootContext } from './HoverCardRoot.vue'
+import { hoverCardRootContext } from './HoverCardRoot.vue'
 import { excludeTouch } from './utils'
 import { Presence } from '@/Presence'
 import HoverCardContentImpl from './HoverCardContentImpl.vue'
@@ -24,7 +24,7 @@ const emits = defineEmits<HoverCardContentEmits>()
 const forwarded = useForwardPropsEmits(props, emits)
 const { forwardRef } = useForwardExpose()
 
-const rootContext = injectHoverCardRootContext()
+const rootContext = hoverCardRootContext.inject()
 </script>
 
 <template>

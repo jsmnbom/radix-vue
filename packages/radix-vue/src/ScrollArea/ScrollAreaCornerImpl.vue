@@ -1,10 +1,10 @@
 <script setup lang="ts">
 import { computed, ref, watch } from 'vue'
 import { useResizeObserver } from '@vueuse/core'
-import { injectScrollAreaRootContext } from './ScrollAreaRoot.vue'
+import { scrollAreaRootContext } from './ScrollAreaRoot.vue'
 import { Primitive } from '@/Primitive'
 
-const rootContext = injectScrollAreaRootContext()
+const rootContext = scrollAreaRootContext.inject()
 
 const width = ref(0)
 const height = ref(0)

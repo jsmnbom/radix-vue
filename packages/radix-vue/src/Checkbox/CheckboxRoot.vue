@@ -34,8 +34,7 @@ interface CheckboxRootContext {
   state: Ref<CheckedState>
 }
 
-export const [injectCheckboxRootContext, provideCheckboxRootContext]
-  = createContext<CheckboxRootContext>('CheckboxRoot')
+export const checkboxRootContext = createContext<CheckboxRootContext>('CheckboxRoot')
 </script>
 
 <script setup lang="ts">
@@ -66,7 +65,7 @@ const ariaLabel = computed(() => props.id && currentElement.value
   ? (document.querySelector(`[for="${props.id}"]`) as HTMLLabelElement)?.innerText
   : undefined)
 
-provideCheckboxRootContext({
+checkboxRootContext.provide({
   disabled,
   state: checked,
 })

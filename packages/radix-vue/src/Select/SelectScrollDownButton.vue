@@ -7,16 +7,16 @@ export interface SelectScrollDownButtonProps extends PrimitiveProps {}
 
 <script setup lang="ts">
 import { ref, watch, watchEffect } from 'vue'
-import { SelectContentDefaultContextValue, injectSelectContentContext } from './SelectContentImpl.vue'
+import { SelectContentDefaultContextValue, selectContentContext } from './SelectContentImpl.vue'
 import SelectScrollButtonImpl from './SelectScrollButtonImpl.vue'
-import { injectSelectItemAlignedPositionContext } from './SelectItemAlignedPosition.vue'
+import { selectItemAlignedPositionContext } from './SelectItemAlignedPosition.vue'
 
 defineProps<SelectScrollDownButtonProps>()
 
-const contentContext = injectSelectContentContext(SelectContentDefaultContextValue)
+const contentContext = selectContentContext.inject(SelectContentDefaultContextValue)
 const alignedPositionContext
   = contentContext.position === 'item-aligned'
-    ? injectSelectItemAlignedPositionContext()
+    ? selectItemAlignedPositionContext.inject()
     : undefined
 
 const { forwardRef, currentElement } = useForwardExpose()

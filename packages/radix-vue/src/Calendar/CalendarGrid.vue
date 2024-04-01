@@ -6,11 +6,11 @@ export interface CalendarGridProps extends PrimitiveProps {}
 
 <script setup lang="ts">
 import { Primitive } from '@/Primitive'
-import { injectCalendarRootContext } from './CalendarRoot.vue'
+import { calendarRootContext } from './CalendarRoot.vue'
 
 const props = withDefaults(defineProps<CalendarGridProps>(), { as: 'table' })
 
-const rootContext = injectCalendarRootContext()
+const rootContext = calendarRootContext.inject()
 </script>
 
 <template>

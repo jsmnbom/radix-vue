@@ -7,7 +7,7 @@ export interface NavigationMenuListProps extends PrimitiveProps {}
 
 <script setup lang="ts">
 import { onMounted } from 'vue'
-import { injectNavigationMenuContext } from './NavigationMenuRoot.vue'
+import { navigationMenuContext } from './NavigationMenuRoot.vue'
 import {
   Primitive,
 } from '@/Primitive'
@@ -20,7 +20,7 @@ const props = withDefaults(defineProps<NavigationMenuListProps>(), {
   as: 'ul',
 })
 
-const menuContext = injectNavigationMenuContext()
+const menuContext = navigationMenuContext.inject()
 const { forwardRef, currentElement } = useForwardExpose()
 
 onMounted(() => {

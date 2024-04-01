@@ -22,7 +22,7 @@ function groupChildren(children: VNode[]) {
   return { firstChildren, otherChildren, commentChildrenBeforeFirst }
 }
 
-export const Slot = defineComponent({
+export const Slot = /* @__PURE__ */ defineComponent({
   name: 'PrimitiveSlot',
   inheritAttrs: false,
   setup(_, { attrs, slots }) {

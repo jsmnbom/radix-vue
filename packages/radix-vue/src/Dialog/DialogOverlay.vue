@@ -12,11 +12,11 @@ export interface DialogOverlayProps extends DialogOverlayImplProps {
 </script>
 
 <script setup lang="ts">
-import { injectDialogRootContext } from './DialogRoot.vue'
+import { dialogRootContext } from './DialogRoot.vue'
 import { Presence } from '@/Presence'
 
 defineProps<DialogOverlayProps>()
-const rootContext = injectDialogRootContext()
+const rootContext = dialogRootContext.inject()
 
 const { forwardRef } = useForwardExpose()
 </script>

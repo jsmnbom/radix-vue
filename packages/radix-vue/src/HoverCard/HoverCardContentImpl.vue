@@ -9,7 +9,7 @@ export interface HoverCardContentImplProps extends PopperContentProps {}
 
 <script setup lang="ts">
 import { nextTick, onMounted, onUnmounted, ref, watchEffect } from 'vue'
-import { injectHoverCardRootContext } from './HoverCardRoot.vue'
+import { hoverCardRootContext } from './HoverCardRoot.vue'
 import { PopperContent } from '@/Popper'
 import { DismissableLayer } from '@/DismissableLayer'
 import { getTabbableNodes } from './utils'
@@ -20,7 +20,7 @@ const emits = defineEmits<HoverCardContentImplEmits>()
 const forwarded = useForwardProps(props)
 
 const { forwardRef, currentElement: contentElement } = useForwardExpose()
-const rootContext = injectHoverCardRootContext()
+const rootContext = hoverCardRootContext.inject()
 const { isPointerInTransit, onPointerExit } = useGraceArea(rootContext.triggerElement, contentElement)
 rootContext.isPointerInTransit = isPointerInTransit
 onPointerExit(() => {

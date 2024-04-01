@@ -135,8 +135,11 @@ export interface PopperContentContext {
   shouldHideArrow: Ref<boolean>
 }
 
-export const [injectPopperContentContext, providePopperContentContext]
-  = createContext<PopperContentContext>('PopperContent')
+export const popperContentContext = createContext<PopperContentContext>('PopperContent')
+
+const defaultProps = /* @__PURE__ */ (() => ({
+  ...PopperContentPropsDefaultValue,
+}))()
 </script>
 
 <script setup lang="ts">
@@ -153,7 +156,7 @@ import {
   size,
   useFloating,
 } from '@floating-ui/vue'
-import { injectPopperRootContext } from './PopperRoot.vue'
+import { popperRootContext } from './PopperRoot.vue'
 import {
   getSideAndAlignFromPlacement,
   isNotNull,
@@ -167,13 +170,11 @@ defineOptions({
   inheritAttrs: false,
 })
 
-const props = withDefaults(defineProps<PopperContentProps>(), {
-  ...PopperContentPropsDefaultValue,
-})
+const props = withDefaults(defineProps<PopperContentProps>(), defaultProps)
 const emits = defineEmits<{
   placed: [void]
 }>()
-const rootContext = injectPopperRootContext()
+const rootContext = popperRootContext.inject()
 
 const { forwardRef, currentElement: contentElement } = useForwardExpose()
 
@@ -311,7 +312,7 @@ watchEffect(() => {
 const arrowX = computed(() => middlewareData.value.arrow?.x ?? 0)
 const arrowY = computed(() => middlewareData.value.arrow?.y ?? 0)
 
-providePopperContentContext({
+popperContentContext.provide({
   placedSide,
   onArrowChange: element => arrow.value = element,
   arrowX,

@@ -42,8 +42,7 @@ export type TabsRootEmits = {
   'update:modelValue': [payload: string]
 }
 
-export const [injectTabsRootContext, provideTabsRootContext]
-  = createContext<TabsRootContext>('TabsRoot')
+export const tabsRootContext = createContext<TabsRootContext>('TabsRoot')
 </script>
 
 <script setup lang="ts">
@@ -67,7 +66,7 @@ const modelValue = useVModel(props, 'modelValue', emits, {
 
 const tabsList = ref<HTMLElement>()
 
-provideTabsRootContext({
+tabsRootContext.provide({
   modelValue,
   changeModelValue: (value: string) => {
     modelValue.value = value

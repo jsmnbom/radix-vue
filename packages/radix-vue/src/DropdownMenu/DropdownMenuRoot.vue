@@ -21,8 +21,7 @@ export interface DropdownMenuRootContext {
   dir: Ref<Direction>
 }
 
-export const [injectDropdownMenuRootContext, provideDropdownMenuRootContext]
-  = createContext<DropdownMenuRootContext>('DropdownMenuRoot')
+export const dropdownMenuRootContext = createContext<DropdownMenuRootContext>('DropdownMenuRoot')
 </script>
 
 <script setup lang="ts">
@@ -46,7 +45,7 @@ const triggerElement = ref<HTMLElement>()
 
 const { modal, dir: propDir } = toRefs(props)
 const dir = useDirection(propDir)
-provideDropdownMenuRootContext({
+dropdownMenuRootContext.provide({
   open,
   onOpenChange: (value) => {
     open.value = value

@@ -30,7 +30,7 @@ export interface PresenceProps {
   forceMount?: boolean
 }
 
-export default defineComponent({
+export default /* @__PURE__ */ defineComponent({
   name: 'Presence',
   props: {
     present: {

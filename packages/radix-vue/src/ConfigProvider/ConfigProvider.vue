@@ -9,8 +9,7 @@ interface ConfigProviderContextValue {
   useId?: () => string
 }
 
-export const [injectConfigProviderContext, provideConfigProviderContext]
-  = createContext<ConfigProviderContextValue>('ConfigProvider')
+export const configProviderContext = createContext<ConfigProviderContextValue>('ConfigProvider')
 
 export interface ConfigProviderProps {
   /**
@@ -41,7 +40,7 @@ const props = withDefaults(defineProps<ConfigProviderProps>(), {
 
 const { dir, scrollBody } = toRefs(props)
 
-provideConfigProviderContext({
+configProviderContext.provide({
   dir,
   scrollBody,
   useId: props.useId,

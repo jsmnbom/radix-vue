@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { ref } from 'vue'
-import { injectDialogRootContext } from './DialogRoot.vue'
+import { dialogRootContext } from './DialogRoot.vue'
 import DialogContentImpl, {
   type DialogContentImplEmits,
   type DialogContentImplProps,
@@ -13,7 +13,7 @@ const emits = defineEmits<DialogContentImplEmits>()
 const emitsAsProps = useEmitAsProps(emits)
 useForwardExpose()
 
-const rootContext = injectDialogRootContext()
+const rootContext = dialogRootContext.inject()
 const hasInteractedOutsideRef = ref(false)
 const hasPointerDownOutsideRef = ref(false)
 </script>

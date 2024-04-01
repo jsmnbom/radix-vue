@@ -39,8 +39,7 @@ interface RadioGroupRootContext {
   required: Ref<boolean>
 }
 
-export const [injectRadioGroupRootContext, provideRadioGroupRootContext]
-  = createContext<RadioGroupRootContext>('RadioGroupRoot')
+export const radioGroupRootContext = createContext<RadioGroupRootContext>('RadioGroupRoot')
 </script>
 
 <script setup lang="ts">
@@ -66,7 +65,7 @@ const modelValue = useVModel(props, 'modelValue', emits, {
 
 const { disabled, loop, orientation, name, required, dir: propDir } = toRefs(props)
 const dir = useDirection(propDir)
-provideRadioGroupRootContext({
+radioGroupRootContext.provide({
   modelValue,
   changeModelValue: (value) => {
     modelValue.value = value

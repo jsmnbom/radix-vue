@@ -24,10 +24,9 @@ export interface ComboboxContentImplProps extends PopperContentProps, Dismissabl
   dismissable?: boolean
 }
 
-export const [injectComboboxContentContext, provideComboboxContentContext]
-  = createContext<{
-    position: Ref<'inline' | 'popper'>
-  }>('ComboboxContent')
+export const comboboxContentContext = createContext<{
+  position: Ref<'inline' | 'popper'>
+}>('ComboboxContent')
 </script>
 
 <script setup lang="ts">
@@ -36,7 +35,7 @@ import {
   onMounted,
   toRefs,
 } from 'vue'
-import { injectComboboxRootContext } from './ComboboxRoot.vue'
+import { comboboxRootContext } from './ComboboxRoot.vue'
 import { DismissableLayer } from '@/DismissableLayer'
 import { PopperContent } from '@/Popper'
 import { Primitive } from '@/Primitive'
@@ -49,7 +48,7 @@ const props = withDefaults(defineProps<ComboboxContentImplProps>(), {
 const emits = defineEmits<ComboboxContentImplEmits>()
 
 const { position } = toRefs(props)
-const rootContext = injectComboboxRootContext()
+const rootContext = comboboxRootContext.inject()
 
 useBodyScrollLock(props.bodyLock)
 
@@ -85,7 +84,7 @@ const popperStyle = {
   '--radix-combobox-trigger-height': 'var(--radix-popper-anchor-height)',
 }
 
-provideComboboxContentContext({ position })
+comboboxContentContext.provide({ position })
 </script>
 
 <template>

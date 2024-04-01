@@ -2,7 +2,7 @@
 import type { PrimitiveProps } from '@/Primitive'
 import { createContext, useForwardExpose, useId } from '@/shared'
 import { useMutationObserver } from '@vueuse/core'
-import { injectComboboxRootContext } from './ComboboxRoot.vue'
+import { comboboxRootContext } from './ComboboxRoot.vue'
 
 export interface ComboboxGroupProps extends PrimitiveProps {}
 
@@ -10,8 +10,7 @@ type ComboboxGroupContext = {
   id: string
 }
 
-export const [injectComboboxGroupContext, provideComboboxGroupContext]
-  = createContext<ComboboxGroupContext>('ComboboxGroup')
+export const comboboxGroupContext = createContext<ComboboxGroupContext>('ComboboxGroup')
 </script>
 
 <script setup lang="ts">
@@ -23,7 +22,7 @@ const props = defineProps<ComboboxGroupProps>()
 const { currentRef, currentElement } = useForwardExpose()
 const id = useId(undefined, 'radix-vue-combobox-group')
 
-const rootContext = injectComboboxRootContext()
+const rootContext = comboboxRootContext.inject()
 const hasOptions = ref(false)
 
 function checkCollectionItem() {
@@ -44,7 +43,7 @@ watch(() => rootContext.searchTerm.value, () => {
   })
 }, { immediate: true })
 
-provideComboboxGroupContext({
+comboboxGroupContext.provide({
   id,
 })
 </script>

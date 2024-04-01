@@ -10,13 +10,13 @@ import { computed, onUnmounted, ref } from 'vue'
 import { watchOnce } from '@vueuse/core'
 import { Primitive } from '@/Primitive'
 import { addUnlinkedScrollListener } from './utils'
-import { injectScrollAreaRootContext } from './ScrollAreaRoot.vue'
-import { injectScrollAreaScrollbarVisibleContext } from './ScrollAreaScrollbarVisible.vue'
+import { scrollAreaRootContext } from './ScrollAreaRoot.vue'
+import { scrollAreaScrollbarVisibleContext } from './ScrollAreaScrollbarVisible.vue'
 
 const props = defineProps<ScrollAreaThumbProps>()
 
-const rootContext = injectScrollAreaRootContext()
-const scrollbarContextVisible = injectScrollAreaScrollbarVisibleContext()
+const rootContext = scrollAreaRootContext.inject()
+const scrollbarContextVisible = scrollAreaScrollbarVisibleContext.inject()
 
 function handlePointerDown(event: MouseEvent) {
   const thumb = event.target as HTMLElement

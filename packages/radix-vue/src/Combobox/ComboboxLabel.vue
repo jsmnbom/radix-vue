@@ -9,14 +9,14 @@ export interface ComboboxLabelProps extends PrimitiveProps {
 <script setup lang="ts">
 import { Primitive } from '@/Primitive'
 import { useForwardExpose } from '@/shared'
-import { injectComboboxGroupContext } from './ComboboxGroup.vue'
+import { comboboxGroupContext } from './ComboboxGroup.vue'
 
 const props = withDefaults(defineProps<ComboboxLabelProps>(), {
   as: 'div',
 })
 
 useForwardExpose()
-const groupContext = injectComboboxGroupContext({ id: '' })
+const groupContext = comboboxGroupContext.inject({ id: '' })
 </script>
 
 <template>

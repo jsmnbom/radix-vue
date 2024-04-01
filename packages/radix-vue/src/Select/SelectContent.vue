@@ -18,7 +18,7 @@ export interface SelectContentProps extends SelectContentImplProps {
 <script setup lang="ts">
 import { computed, onMounted, ref } from 'vue'
 import SelectContentImpl from './SelectContentImpl.vue'
-import { injectSelectRootContext } from './SelectRoot.vue'
+import { selectRootContext } from './SelectRoot.vue'
 import { Presence } from '@/Presence'
 import { useForwardPropsEmits } from '@/shared'
 import SelectProvider from './SelectProvider.vue'
@@ -32,7 +32,7 @@ const props = defineProps<SelectContentProps>()
 const emits = defineEmits<SelectContentEmits>()
 const forwarded = useForwardPropsEmits(props, emits)
 
-const rootContext = injectSelectRootContext()
+const rootContext = selectRootContext.inject()
 
 const fragment = ref<DocumentFragment>()
 onMounted(() => {

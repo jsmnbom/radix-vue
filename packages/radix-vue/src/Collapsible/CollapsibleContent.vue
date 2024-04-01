@@ -13,7 +13,7 @@ export interface CollapsibleContentProps extends PrimitiveProps {
 
 <script setup lang="ts">
 import { computed, nextTick, onMounted, ref, watch } from 'vue'
-import { injectCollapsibleRootContext } from './CollapsibleRoot.vue'
+import { collapsibleRootContext } from './CollapsibleRoot.vue'
 import {
   Primitive,
 } from '@/Primitive'
@@ -25,7 +25,7 @@ defineOptions({
 
 const props = defineProps<CollapsibleContentProps>()
 
-const rootContext = injectCollapsibleRootContext()
+const rootContext = collapsibleRootContext.inject()
 rootContext.contentId ||= useId(undefined, 'radix-vue-collapsible-content')
 
 const presentRef = ref<InstanceType<typeof Presence>>()

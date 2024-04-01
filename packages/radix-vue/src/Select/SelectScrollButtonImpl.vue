@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { onBeforeUnmount, ref, watchEffect } from 'vue'
-import { SelectContentDefaultContextValue, injectSelectContentContext } from './SelectContentImpl.vue'
+import { SelectContentDefaultContextValue, selectContentContext } from './SelectContentImpl.vue'
 import { Primitive } from '@/Primitive'
 import { useCollection } from '@/shared'
 
@@ -12,7 +12,7 @@ const emits = defineEmits<SelectScrollButtonImplEmits>()
 const { injectCollection } = useCollection()
 
 const collectionItems = injectCollection()
-const contentContext = injectSelectContentContext(SelectContentDefaultContextValue)
+const contentContext = selectContentContext.inject(SelectContentDefaultContextValue)
 const autoScrollTimerRef = ref<number | null>(null)
 
 function clearAutoScrollTimer() {

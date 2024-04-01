@@ -29,8 +29,7 @@ export interface HoverCardRootContext {
   triggerElement: Ref<HTMLElement | undefined>
 }
 
-export const [injectHoverCardRootContext, provideHoverCardRootContext]
-  = createContext<HoverCardRootContext>('HoverCardRoot')
+export const hoverCardRootContext = createContext<HoverCardRootContext>('HoverCardRoot')
 </script>
 
 <script setup lang="ts">
@@ -76,7 +75,7 @@ function handleDismiss() {
   open.value = false
 }
 
-provideHoverCardRootContext({
+hoverCardRootContext.provide({
   open,
   onOpenChange(value) {
     open.value = value

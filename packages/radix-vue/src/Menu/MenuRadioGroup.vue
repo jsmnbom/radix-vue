@@ -18,8 +18,7 @@ export type MenuRadioGroupEmits = {
   'update:modelValue': [payload: boolean]
 }
 
-export const [injectMenuRadioGroupContext, provideMenuRadioGroupContext]
-  = createContext<MenuRadioGroupContext>('MenuRadioGroup')
+export const menuRadioGroupContext = createContext<MenuRadioGroupContext>('MenuRadioGroup')
 </script>
 
 <script setup lang="ts">
@@ -32,7 +31,7 @@ const props = withDefaults(defineProps<MenuRadioGroupProps>(), {
 const emits = defineEmits<MenuRadioGroupEmits>()
 const modelValue = useVModel(props, 'modelValue', emits)
 
-provideMenuRadioGroupContext({
+menuRadioGroupContext.provide({
   modelValue,
   onValueChange: (payload) => {
     modelValue.value = payload

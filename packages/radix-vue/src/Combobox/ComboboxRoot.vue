@@ -30,8 +30,7 @@ type ComboboxRootContext<T> = {
   parentElement: Ref<HTMLElement | undefined>
 }
 
-export const [injectComboboxRootContext, provideComboboxRootContext]
-  = createContext<ComboboxRootContext<AcceptableValue>>('ComboboxRoot')
+export const comboboxRootContext = createContext<ComboboxRootContext<AcceptableValue>>('ComboboxRoot')
 
 export type ComboboxRootEmits<T = AcceptableValue> = {
   /** Event handler called when the value changes. */
@@ -213,7 +212,7 @@ function scrollSelectedValueIntoView() {
     selectedElement.value.scrollIntoView({ block: 'nearest' })
 }
 
-provideComboboxRootContext({
+comboboxRootContext.provide({
   searchTerm,
   modelValue,
   // @ts-expect-error igoring

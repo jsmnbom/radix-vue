@@ -16,10 +16,9 @@ export interface MenuItemIndicatorProps extends PrimitiveProps {
   forceMount?: boolean
 }
 
-export const [injectMenuItemIndicatorContext, provideMenuItemIndicatorContext]
-  = createContext<MenuItemIndicatorContext>(
-    ['MenuCheckboxItem', 'MenuRadioItem'], 'MenuItemIndicatorContext',
-  )
+export const menuItemIndicatorContext = createContext<MenuItemIndicatorContext>(
+  ['MenuCheckboxItem', 'MenuRadioItem'], 'MenuItemIndicatorContext',
+)
 </script>
 
 <script setup lang="ts">
@@ -32,7 +31,7 @@ withDefaults(defineProps<MenuItemIndicatorProps>(), {
   as: 'span',
 })
 
-const indicatorContext = injectMenuItemIndicatorContext({
+const indicatorContext = menuItemIndicatorContext.inject({
   checked: ref(false),
 })
 </script>

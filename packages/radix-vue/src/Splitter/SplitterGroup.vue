@@ -67,7 +67,7 @@ export type PanelGroupContext = {
   getPanelStyle: (panelData: PanelData, defaultSize: number | undefined) => CSSProperties
 }
 
-export const [injectPanelGroupContext, providePanelGroupContext] = createContext<PanelGroupContext>('PanelGroup')
+export const panelGroupContext = createContext<PanelGroupContext>('PanelGroup')
 </script>
 
 <script setup lang="ts">
@@ -657,7 +657,7 @@ function isPanelExpanded(panelData: PanelData) {
   return !collapsible || panelSize > collapsedSize
 }
 
-providePanelGroupContext({
+panelGroupContext.provide({
   direction: props.direction,
   dragState: dragState.value,
   groupId,

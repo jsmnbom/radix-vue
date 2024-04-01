@@ -15,7 +15,7 @@ export interface PopperArrowProps extends ArrowProps, PrimitiveProps {}
 
 <script setup lang="ts">
 import { computed } from 'vue'
-import { injectPopperContentContext } from './PopperContent.vue'
+import { popperContentContext } from './PopperContent.vue'
 import { useForwardExpose } from '@/shared'
 import Arrow from '@/shared/component/Arrow.vue'
 
@@ -29,7 +29,7 @@ withDefaults(
 )
 
 const { forwardRef } = useForwardExpose()
-const contentContext = injectPopperContentContext()
+const contentContext = popperContentContext.inject()
 
 const baseSide = computed(() => OPPOSITE_SIDE[contentContext.placedSide.value])
 </script>

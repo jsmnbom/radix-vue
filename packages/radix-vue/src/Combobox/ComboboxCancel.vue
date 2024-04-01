@@ -7,14 +7,14 @@ export interface ComboboxCancelProps extends PrimitiveProps {}
 <script setup lang="ts">
 import { Primitive } from '@/Primitive'
 import { useForwardExpose } from '@/shared'
-import { injectComboboxRootContext } from './ComboboxRoot.vue'
+import { comboboxRootContext } from './ComboboxRoot.vue'
 
 const props = withDefaults(defineProps<ComboboxCancelProps>(), {
   as: 'button',
 })
 
 useForwardExpose()
-const rootContext = injectComboboxRootContext()
+const rootContext = comboboxRootContext.inject()
 
 function handleClick() {
   rootContext.searchTerm.value = ''

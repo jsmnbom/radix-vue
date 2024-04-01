@@ -10,7 +10,7 @@ export interface SelectValueProps extends PrimitiveProps {
 <script setup lang="ts">
 import { onBeforeMount, onMounted, useSlots } from 'vue'
 import { shouldShowPlaceholder } from './utils'
-import { injectSelectRootContext } from './SelectRoot.vue'
+import { selectRootContext } from './SelectRoot.vue'
 import { Primitive } from '@/Primitive'
 import { renderSlotFragments, useForwardExpose } from '@/shared'
 
@@ -21,7 +21,7 @@ withDefaults(defineProps<SelectValueProps>(), {
 
 const { forwardRef, currentElement } = useForwardExpose()
 
-const rootContext = injectSelectRootContext()
+const rootContext = selectRootContext.inject()
 const slots = useSlots()
 
 onBeforeMount(() => {

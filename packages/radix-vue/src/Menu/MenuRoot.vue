@@ -34,11 +34,9 @@ export type MenuEmits = {
   'update:open': [payload: boolean]
 }
 
-export const [injectMenuContext, provideMenuContext]
-  = createContext<MenuContext>(['MenuRoot', 'MenuSub'], 'MenuContext')
+export const menuContext = createContext<MenuContext>(['MenuRoot', 'MenuSub'], 'MenuContext')
 
-export const [injectMenuRootContext, provideMenuRootContext]
-  = createContext<MenuRootContext>('MenuRoot')
+export const menuRootContext = createContext<MenuRootContext>('MenuRoot')
 </script>
 
 <script setup lang="ts">
@@ -94,7 +92,7 @@ watchEffect((cleanupFn) => {
   })
 })
 
-provideMenuContext({
+menuContext.provide({
   open,
   onOpenChange: (value) => {
     open.value = value
@@ -105,7 +103,7 @@ provideMenuContext({
   },
 })
 
-provideMenuRootContext({
+menuRootContext.provide({
   onClose: () => {
     open.value = false
   },

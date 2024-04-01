@@ -15,7 +15,7 @@ export interface TabsContentProps extends PrimitiveProps {
 
 <script setup lang="ts">
 import { computed, onMounted, ref } from 'vue'
-import { injectTabsRootContext } from './TabsRoot.vue'
+import { tabsRootContext } from './TabsRoot.vue'
 import { Primitive } from '@/Primitive'
 import { makeContentId, makeTriggerId } from './utils'
 import { Presence } from '@/Presence'
@@ -23,7 +23,7 @@ import { Presence } from '@/Presence'
 const props = defineProps<TabsContentProps>()
 
 const { forwardRef } = useForwardExpose()
-const rootContext = injectTabsRootContext()
+const rootContext = tabsRootContext.inject()
 const triggerId = computed(() => makeTriggerId(rootContext.baseId, props.value))
 const contentId = computed(() => makeContentId(rootContext.baseId, props.value))
 

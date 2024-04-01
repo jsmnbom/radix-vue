@@ -11,8 +11,8 @@ import { computed, onMounted, onUnmounted } from 'vue'
 import { useMounted } from '@vueuse/core'
 import { Primitive } from '@/Primitive'
 import { CollectionItem } from '@/Collection'
-import { injectSliderRootContext } from './SliderRoot.vue'
-import { convertValueToPercentage, getLabel, getThumbInBoundsOffset, injectSliderOrientationContext } from './utils'
+import { sliderRootContext } from './SliderRoot.vue'
+import { convertValueToPercentage, getLabel, getThumbInBoundsOffset, sliderOrientationContext } from './utils'
 import { useForwardExpose, useSize } from '@/shared'
 
 defineOptions({
@@ -21,8 +21,8 @@ defineOptions({
 
 const props = defineProps<SliderThumbImplProps>()
 
-const rootContext = injectSliderRootContext()
-const orientation = injectSliderOrientationContext()
+const rootContext = sliderRootContext.inject()
+const orientation = sliderOrientationContext.inject()
 
 const { forwardRef, currentElement: thumbElement } = useForwardExpose()
 

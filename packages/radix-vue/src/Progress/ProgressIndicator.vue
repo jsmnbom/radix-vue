@@ -6,12 +6,12 @@ export interface ProgressIndicatorProps extends PrimitiveProps {}
 </script>
 
 <script setup lang="ts">
-import { injectProgressRootContext } from './ProgressRoot.vue'
+import { progressRootContext } from './ProgressRoot.vue'
 import { Primitive } from '@/Primitive'
 
 const props = defineProps<ProgressIndicatorProps>()
 
-const rootContext = injectProgressRootContext()
+const rootContext = progressRootContext.inject()
 useForwardExpose()
 </script>
 

@@ -18,8 +18,8 @@ export interface MenuSubContentProps extends Omit<MenuContentImplProps, 'disable
 
 <script setup lang="ts">
 import MenuContentImpl from './MenuContentImpl.vue'
-import { injectMenuContext, injectMenuRootContext } from './MenuRoot.vue'
-import { injectMenuSubContext } from './MenuSub.vue'
+import { menuContext as MenuContext, menuRootContext } from './MenuRoot.vue'
+import { menuSubContext as MenuSubContext } from './MenuSub.vue'
 import { SUB_CLOSE_KEYS } from './utils'
 import { Presence } from '@/Presence'
 import { useForwardExpose, useForwardPropsEmits, useId } from '@/shared'
@@ -31,9 +31,9 @@ const emits = defineEmits<MenuSubContentEmits>()
 
 const forwarded = useForwardPropsEmits(props, emits)
 
-const menuContext = injectMenuContext()
-const rootContext = injectMenuRootContext()
-const menuSubContext = injectMenuSubContext()
+const menuContext = MenuContext.inject()
+const rootContext = menuRootContext.inject()
+const menuSubContext = MenuSubContext.inject()
 
 const { forwardRef, currentElement: subContentElement } = useForwardExpose()
 

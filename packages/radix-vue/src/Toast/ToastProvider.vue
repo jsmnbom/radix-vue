@@ -41,8 +41,7 @@ export interface ToastProviderProps {
   swipeThreshold?: number
 }
 
-export const [injectToastProviderContext, provideToastProviderContext]
-  = createContext<ToastProviderContext>('ToastProvider')
+export const toastProviderContext = createContext<ToastProviderContext>('ToastProvider')
 </script>
 
 <script setup lang="ts">
@@ -66,7 +65,7 @@ if (props.label && typeof props.label === 'string' && !props.label.trim()) {
   throw new Error(error)
 }
 
-provideToastProviderContext({
+toastProviderContext.provide({
   label,
   duration,
   swipeDirection,

@@ -9,8 +9,7 @@ interface AlertDialogContentContext {
   onCancelElementChange(el: HTMLElement | undefined): void
 }
 
-export const [injectAlertDialogContentContext, provideAlertDialogContentContext]
-  = createContext<AlertDialogContentContext>('AlertDialogContent')
+export const alertDialogContentContext = createContext<AlertDialogContentContext>('AlertDialogContent')
 
 export type AlertDialogContentEmits = DialogContentEmits
 export interface AlertDialogContentProps extends DialogContentProps {}
@@ -28,7 +27,7 @@ useForwardExpose()
 
 const cancelElement = ref<HTMLElement | undefined>()
 
-provideAlertDialogContentContext({
+alertDialogContentContext.provide({
   onCancelElementChange: (el) => {
     cancelElement.value = el
   },

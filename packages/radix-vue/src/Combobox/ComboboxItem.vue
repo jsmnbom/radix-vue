@@ -9,8 +9,7 @@ interface ComboboxItemContext {
   isSelected: Ref<boolean>
 }
 
-export const [injectComboboxItemContext, provideComboboxItemContext]
-  = createContext<ComboboxItemContext>('ComboboxItem')
+export const comboboxItemContext = createContext<ComboboxItemContext>('ComboboxItem')
 
 export type ComboboxItemEmits<T = AcceptableValue> = {
   /** Event handler called when the selecting item. <br> It can be prevented by calling `event.preventDefault`. */
@@ -34,8 +33,8 @@ import {
   ref,
   toRefs,
 } from 'vue'
-import { injectComboboxRootContext } from './ComboboxRoot.vue'
-import { injectComboboxGroupContext } from './ComboboxGroup.vue'
+import { comboboxRootContext } from './ComboboxRoot.vue'
+import { comboboxGroupContext } from './ComboboxGroup.vue'
 import {
   Primitive,
 } from '@/Primitive'
@@ -47,8 +46,8 @@ const emits = defineEmits<ComboboxItemEmits<T>>()
 
 const { disabled } = toRefs(props)
 
-const rootContext = injectComboboxRootContext()
-const groupContext = injectComboboxGroupContext({ id: '', options: ref([]) })
+const rootContext = comboboxRootContext.inject()
+const groupContext = comboboxGroupContext.inject({ id: '', options: ref([]) })
 const { forwardRef } = useForwardExpose()
 
 const isSelected = computed(() =>
@@ -96,7 +95,7 @@ if (props.value === '') {
   )
 }
 
-provideComboboxItemContext({
+comboboxItemContext.provide({
   isSelected,
 })
 </script>

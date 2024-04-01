@@ -11,8 +11,7 @@ interface SelectItemContext {
   onItemTextChange(node: HTMLElement | undefined): void
 }
 
-export const [injectSelectItemContext, provideSelectItemContext]
-    = createContext<SelectItemContext>('SelectItem')
+export const selectItemContext = createContext<SelectItemContext>('SelectItem')
 
 export interface SelectItemProps extends PrimitiveProps {
   /** The value given as data when submitted with a `name`. */
@@ -36,16 +35,16 @@ import {
   ref,
   toRefs,
 } from 'vue'
-import { injectSelectRootContext } from './SelectRoot.vue'
-import { SelectContentDefaultContextValue, injectSelectContentContext } from './SelectContentImpl.vue'
+import { selectRootContext } from './SelectRoot.vue'
+import { SelectContentDefaultContextValue, selectContentContext } from './SelectContentImpl.vue'
 import { SELECTION_KEYS } from './utils'
 import { Primitive } from '@/Primitive'
 
 const props = defineProps<SelectItemProps>()
 const { disabled } = toRefs(props)
 
-const rootContext = injectSelectRootContext()
-const contentContext = injectSelectContentContext(SelectContentDefaultContextValue)
+const rootContext = selectRootContext.inject()
+const contentContext = selectContentContext.inject(SelectContentDefaultContextValue)
 const { forwardRef, currentElement } = useForwardExpose()
 
 const isSelected = computed(() => rootContext.modelValue?.value === props.value)
@@ -116,7 +115,7 @@ onMounted(() => {
   )
 })
 
-provideSelectItemContext({
+selectItemContext.provide({
   value: props.value,
   disabled,
   textId,

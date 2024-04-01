@@ -18,7 +18,7 @@ export interface MenuContentProps extends MenuRootContentTypeProps {
 <script setup lang="ts">
 import MenuRootContentModal from './MenuRootContentModal.vue'
 import MenuRootContentNonModal from './MenuRootContentNonModal.vue'
-import { injectMenuContext, injectMenuRootContext } from './MenuRoot.vue'
+import { menuContext as MenuContext, menuRootContext } from './MenuRoot.vue'
 import { Presence } from '@/Presence'
 import { useForwardPropsEmits } from '@/shared'
 
@@ -26,8 +26,8 @@ const props = defineProps<MenuContentProps>()
 const emits = defineEmits<MenuContentImplEmits>()
 const forwarded = useForwardPropsEmits(props, emits)
 
-const menuContext = injectMenuContext()
-const rootContext = injectMenuRootContext()
+const menuContext = MenuContext.inject()
+const rootContext = menuRootContext.inject()
 </script>
 
 <template>

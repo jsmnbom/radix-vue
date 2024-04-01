@@ -52,8 +52,7 @@ export interface SliderRootContext {
   thumbElements: Ref<HTMLElement[]>
 }
 
-export const [injectSliderRootContext, provideSliderRootContext]
-  = createContext<SliderRootContext>('SliderRoot')
+export const sliderRootContext = createContext<SliderRootContext>('SliderRoot')
 </script>
 
 <script setup lang="ts">
@@ -139,7 +138,7 @@ function updateValues(value: number, atIndex: number, { commit } = { commit: fal
 }
 
 const thumbElements = ref<HTMLElement[]>([])
-provideSliderRootContext({
+sliderRootContext.provide({
   modelValue,
   valueIndexToChangeRef,
   thumbElements,

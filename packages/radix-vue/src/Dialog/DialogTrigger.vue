@@ -6,14 +6,14 @@ export interface DialogTriggerProps extends PrimitiveProps {}
 
 <script setup lang="ts">
 import { onMounted } from 'vue'
-import { injectDialogRootContext } from './DialogRoot.vue'
+import { dialogRootContext } from './DialogRoot.vue'
 import { useForwardExpose, useId } from '@/shared'
 import { Primitive } from '@/Primitive'
 
 const props = withDefaults(defineProps<DialogTriggerProps>(), {
   as: 'button',
 })
-const rootContext = injectDialogRootContext()
+const rootContext = dialogRootContext.inject()
 const { forwardRef, currentElement } = useForwardExpose()
 
 rootContext.contentId ||= useId(undefined, 'radix-vue-dialog-content')

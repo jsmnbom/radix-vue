@@ -17,19 +17,18 @@ type MenubarMenuContext = {
   wasKeyboardTriggerOpenRef: Ref<boolean>
 }
 
-export const [injectMenubarMenuContext, provideMenubarMenuContext]
-  = createContext<MenubarMenuContext>('MenubarMenu')
+export const menubarMenuContext = createContext<MenubarMenuContext>('MenubarMenu')
 </script>
 
 <script setup lang="ts">
 import { computed, ref, watch } from 'vue'
-import { injectMenubarRootContext } from './MenubarRoot.vue'
+import { menubarRootContext } from './MenubarRoot.vue'
 import { MenuRoot } from '@/Menu'
 
 const props = defineProps<MenubarMenuProps>()
 
 const value = useId(props.value)
-const rootContext = injectMenubarRootContext()
+const rootContext = menubarRootContext.inject()
 useForwardExpose()
 
 const triggerElement = ref<HTMLElement>()
@@ -42,7 +41,7 @@ watch(open, () => {
     wasKeyboardTriggerOpenRef.value = false
 })
 
-provideMenubarMenuContext({
+menubarMenuContext.provide({
   value,
   triggerElement,
   triggerId: value,

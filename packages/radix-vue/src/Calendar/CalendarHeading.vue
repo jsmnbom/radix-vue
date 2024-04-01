@@ -6,7 +6,7 @@ export interface CalendarHeadingProps extends PrimitiveProps {}
 
 <script setup lang="ts">
 import { Primitive } from '@/Primitive'
-import { injectCalendarRootContext } from './CalendarRoot.vue'
+import { calendarRootContext } from './CalendarRoot.vue'
 
 const props = withDefaults(defineProps<CalendarHeadingProps>(), { as: 'div' })
 
@@ -17,7 +17,7 @@ defineSlots<{
   }): any
 }>()
 
-const rootContext = injectCalendarRootContext()
+const rootContext = calendarRootContext.inject()
 </script>
 
 <template>

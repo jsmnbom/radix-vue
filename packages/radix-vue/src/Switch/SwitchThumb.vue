@@ -6,12 +6,12 @@ export interface SwitchThumbProps extends PrimitiveProps {}
 </script>
 
 <script setup lang="ts">
-import { injectSwitchRootContext } from './SwitchRoot.vue'
+import { switchRootContext } from './SwitchRoot.vue'
 import { Primitive } from '@/Primitive'
 
 withDefaults(defineProps<SwitchThumbProps>(), { as: 'span' })
 
-const rootContext = injectSwitchRootContext()
+const rootContext = switchRootContext.inject()
 
 useForwardExpose()
 </script>

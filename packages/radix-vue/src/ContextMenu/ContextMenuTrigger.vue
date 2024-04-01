@@ -12,7 +12,7 @@ export interface ContextMenuTriggerProps extends PrimitiveProps {
 
 <script setup lang="ts">
 import { computed, nextTick, ref, toRefs } from 'vue'
-import { injectContextMenuRootContext } from './ContextMenuRoot.vue'
+import { contextMenuRootContext } from './ContextMenuRoot.vue'
 import { isTouchOrPen } from './utils'
 import { useForwardExpose } from '@/shared'
 import { Primitive } from '@/Primitive'
@@ -29,7 +29,7 @@ const props = withDefaults(defineProps<ContextMenuTriggerProps>(), {
 const { disabled } = toRefs(props)
 
 const { forwardRef } = useForwardExpose()
-const rootContext = injectContextMenuRootContext()
+const rootContext = contextMenuRootContext.inject()
 const point = ref<Point>({ x: 0, y: 0 })
 const virtualEl = computed(() => ({
   getBoundingClientRect: () =>

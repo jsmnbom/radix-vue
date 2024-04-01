@@ -80,8 +80,7 @@ export type DateRangeFieldRootEmits = {
   'update:placeholder': [date: DateValue]
 }
 
-export const [injectDateRangeFieldRootContext, provideDateRangeFieldRootContext]
-  = createContext<DateRangeFieldRootContext>('DateRangeFieldRoot')
+export const dateRangeFieldRootContext = createContext<DateRangeFieldRootContext>('DateRangeFieldRoot')
 </script>
 
 <script setup lang="ts">
@@ -305,7 +304,7 @@ function setFocusedElement(el: HTMLElement) {
   currentFocusedElement.value = el
 }
 
-provideDateRangeFieldRootContext({
+dateRangeFieldRootContext.provide({
   isDateUnavailable: propsIsDateUnavailable.value,
   locale,
   startValue,

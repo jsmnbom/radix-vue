@@ -1,6 +1,6 @@
 // Inspired from https://github.com/tailwindlabs/headlessui/issues/2913
 // as the alternative, and a fallback for Vue version < 3.5
-import { injectConfigProviderContext } from '@/ConfigProvider/ConfigProvider.vue'
+import { configProviderContext } from '@/ConfigProvider/ConfigProvider.vue'
 
 let count = 0
 
@@ -12,14 +12,14 @@ let count = 0
  * `deterministicId` is provided, the function will return it. Otherwise, it will generate an id using
  * the `useId` function obtained
  * @returns The `useId` function is being returned. If a `deterministicId` is provided, it will be
- * returned. Otherwise, the `useId` function from the `injectConfigProviderContext` is called to
+ * returned. Otherwise, the `useId` function from the `onfigProviderContext.inject()` is called to
  * generate an id in the format `radix-` and returned.
  */
 export function useId(deterministicId?: string | null | undefined, prefix = 'radix') {
   if (deterministicId)
     return deterministicId
 
-  const { useId } = injectConfigProviderContext({ useId: undefined })
+  const { useId } = configProviderContext.inject({ useId: undefined })
   if (useId && typeof useId === 'function')
     return `${prefix}-${useId()}`
 

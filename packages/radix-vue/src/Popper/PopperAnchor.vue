@@ -10,7 +10,7 @@ export interface PopperAnchorProps extends PrimitiveProps {
 
 <script setup lang="ts">
 import { watch } from 'vue'
-import { injectPopperRootContext } from './PopperRoot.vue'
+import { popperRootContext } from './PopperRoot.vue'
 import {
   Primitive,
 } from '@/Primitive'
@@ -19,7 +19,7 @@ const props = defineProps<PopperAnchorProps>()
 
 const { forwardRef, currentElement } = useForwardExpose()
 
-const rootContext = injectPopperRootContext()
+const rootContext = popperRootContext.inject()
 
 watch(currentElement, () => {
   rootContext.onAnchorChange(props.element ?? currentElement.value)

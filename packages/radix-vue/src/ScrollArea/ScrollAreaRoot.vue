@@ -25,8 +25,7 @@ export interface ScrollAreaRootContext {
   onCornerHeightChange(height: number): void
 }
 
-export const [injectScrollAreaRootContext, provideScrollAreaRootContext]
-  = createContext<ScrollAreaRootContext>('ScrollAreaRoot')
+export const scrollAreaRootContext = createContext<ScrollAreaRootContext>('ScrollAreaRoot')
 
 export interface ScrollAreaRootProps extends PrimitiveProps {
   /**
@@ -67,7 +66,7 @@ const scrollbarYEnabled = ref(false)
 
 const { type, dir: propDir, scrollHideDelay } = toRefs(props)
 const dir = useDirection(propDir)
-provideScrollAreaRootContext({
+scrollAreaRootContext.provide({
   type,
   dir,
   scrollHideDelay,

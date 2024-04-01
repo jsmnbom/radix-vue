@@ -6,7 +6,7 @@ export interface ComboboxItemIndicatorProps extends PrimitiveProps {}
 </script>
 
 <script setup lang="ts">
-import { injectComboboxItemContext } from './ComboboxItem.vue'
+import { comboboxItemContext } from './ComboboxItem.vue'
 import { Primitive } from '@/Primitive'
 
 const props = withDefaults(defineProps<ComboboxItemIndicatorProps>(), {
@@ -14,7 +14,7 @@ const props = withDefaults(defineProps<ComboboxItemIndicatorProps>(), {
 })
 
 useForwardExpose()
-const itemContext = injectComboboxItemContext()
+const itemContext = comboboxItemContext.inject()
 </script>
 
 <template>

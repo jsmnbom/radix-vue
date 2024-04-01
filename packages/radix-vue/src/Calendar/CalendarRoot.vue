@@ -102,8 +102,7 @@ export type CalendarRootEmits = {
   'update:placeholder': [date: DateValue]
 }
 
-export const [injectCalendarRootContext, provideCalendarRootContext]
-  = createContext<CalendarRootContext>('CalendarRoot')
+export const calendarRootContext = createContext<CalendarRootContext>('CalendarRoot')
 </script>
 
 <script setup lang="ts">
@@ -300,7 +299,7 @@ onMounted(() => {
     handleCalendarInitialFocus(parentElement.value)
 })
 
-provideCalendarRootContext({
+calendarRootContext.provide({
   isDateUnavailable,
   isDateDisabled,
   locale,

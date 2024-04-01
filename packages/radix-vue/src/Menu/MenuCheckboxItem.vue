@@ -20,7 +20,7 @@ export interface MenuCheckboxItemProps extends MenuItemProps {
 import { useVModel } from '@vueuse/core'
 import { getCheckedState, isIndeterminate } from './utils'
 import MenuItem from './MenuItem.vue'
-import { provideMenuItemIndicatorContext } from './MenuItemIndicator.vue'
+import { menuItemIndicatorContext } from './MenuItemIndicator.vue'
 
 const props = withDefaults(defineProps<MenuCheckboxItemProps>(), {
   checked: false,
@@ -28,7 +28,7 @@ const props = withDefaults(defineProps<MenuCheckboxItemProps>(), {
 const emits = defineEmits<MenuCheckboxItemEmits>()
 const checked = useVModel(props, 'checked', emits)
 
-provideMenuItemIndicatorContext({ checked })
+menuItemIndicatorContext.provide({ checked })
 </script>
 
 <template>

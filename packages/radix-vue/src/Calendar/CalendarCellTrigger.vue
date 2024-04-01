@@ -23,13 +23,13 @@ export interface CalendarCellTriggerProps extends PrimitiveProps {
 
 <script setup lang="ts">
 import { Primitive, usePrimitiveElement } from '@/Primitive'
-import { injectCalendarRootContext } from './CalendarRoot.vue'
+import { calendarRootContext } from './CalendarRoot.vue'
 
 const props = withDefaults(defineProps<CalendarCellTriggerProps>(), {
   as: 'div',
 })
 const kbd = useKbd()
-const rootContext = injectCalendarRootContext()
+const rootContext = calendarRootContext.inject()
 
 const { primitiveElement, currentElement } = usePrimitiveElement()
 

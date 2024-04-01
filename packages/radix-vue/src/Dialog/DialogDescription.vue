@@ -6,13 +6,13 @@ export interface DialogDescriptionProps extends PrimitiveProps {}
 </script>
 
 <script setup lang="ts">
-import { injectDialogRootContext } from './DialogRoot.vue'
+import { dialogRootContext } from './DialogRoot.vue'
 import { Primitive } from '@/Primitive'
 
 const props = withDefaults(defineProps<DialogDescriptionProps>(), { as: 'p' })
 
 useForwardExpose()
-const rootContext = injectDialogRootContext()
+const rootContext = dialogRootContext.inject()
 </script>
 
 <template>

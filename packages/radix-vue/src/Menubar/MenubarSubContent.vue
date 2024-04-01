@@ -10,8 +10,8 @@ export interface MenubarSubContentProps extends MenuSubContentProps {}
 </script>
 
 <script setup lang="ts">
-import { injectMenubarRootContext } from './MenubarRoot.vue'
-import { injectMenubarMenuContext } from './MenubarMenu.vue'
+import { menubarRootContext } from './MenubarRoot.vue'
+import { menubarMenuContext } from './MenubarMenu.vue'
 import { MenuSubContent } from '@/Menu'
 import { useCollection, useForwardExpose, useForwardPropsEmits } from '@/shared'
 import { wrapArray } from '@/shared/useTypeahead'
@@ -23,8 +23,8 @@ useForwardExpose()
 
 const { injectCollection } = useCollection('menubar')
 
-const rootContext = injectMenubarRootContext()
-const menuContext = injectMenubarMenuContext()
+const rootContext = menubarRootContext.inject()
+const menuContext = menubarMenuContext.inject()
 const collections = injectCollection()
 
 function handleArrowNavigation(event: KeyboardEvent) {

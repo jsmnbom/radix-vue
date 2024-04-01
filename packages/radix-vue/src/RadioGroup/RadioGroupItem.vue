@@ -10,14 +10,13 @@ interface RadioGroupItemContext {
   checked: ComputedRef<boolean>
 }
 
-export const [injectRadioGroupItemContext, provideRadiogroupItemContext]
-  = createContext<RadioGroupItemContext>('RadioGroupItem')
+export const radioGroupItemContext = createContext<RadioGroupItemContext>('RadioGroupItem')
 </script>
 
 <script setup lang="ts">
 import { computed, ref } from 'vue'
 import Radio from './Radio.vue'
-import { injectRadioGroupRootContext } from './RadioGroupRoot.vue'
+import { radioGroupRootContext } from './RadioGroupRoot.vue'
 import { RovingFocusItem } from '@/RovingFocus'
 import { useEventListener } from '@vueuse/core'
 
@@ -31,13 +30,13 @@ const props = withDefaults(defineProps<RadioGroupItemProps>(), {
 })
 const { forwardRef, currentElement } = useForwardExpose()
 
-const rootContext = injectRadioGroupRootContext()
+const rootContext = radioGroupRootContext.inject()
 
 const disabled = computed(() => rootContext.disabled.value || props.disabled)
 const required = computed(() => rootContext.required.value || props.required)
 const checked = computed(() => rootContext.modelValue?.value === props.value)
 
-provideRadiogroupItemContext({ disabled, checked })
+radiogroupItemContext.provide({ disabled, checked })
 
 const isArrowKeyPressed = ref(false)
 const ARROW_KEYS = ['ArrowUp', 'ArrowDown', 'ArrowLeft', 'ArrowRight']

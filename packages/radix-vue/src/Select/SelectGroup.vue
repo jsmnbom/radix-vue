@@ -8,8 +8,7 @@ interface SelectGroupContext {
   id: string
 }
 
-export const [injectSelectGroupContext, provideSelectGroupContext]
-  = createContext<SelectGroupContext>('SelectGroup')
+export const selectGroupContext = createContext<SelectGroupContext>('SelectGroup')
 </script>
 
 <script setup lang="ts">
@@ -18,7 +17,7 @@ import { Primitive } from '@/Primitive'
 const props = defineProps<SelectGroupProps>()
 
 const id = useId(undefined, 'radix-vue-select-group')
-provideSelectGroupContext({ id })
+selectGroupContext.provide({ id })
 </script>
 
 <template>

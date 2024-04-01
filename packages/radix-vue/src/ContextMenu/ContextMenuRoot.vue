@@ -14,8 +14,7 @@ type ContextMenuRootContext = {
 export interface ContextMenuRootProps extends Omit<MenuProps, 'open'> {}
 export type ContextMenuRootEmits = MenuEmits
 
-export const [injectContextMenuRootContext, provideContextMenuRootContext]
-  = createContext<ContextMenuRootContext>('ContextMenuRoot')
+export const contextMenuRootContext = createContext<ContextMenuRootContext>('ContextMenuRoot')
 </script>
 
 <script setup lang="ts">
@@ -36,7 +35,7 @@ const dir = useDirection(propDir)
 
 const open = ref(false)
 
-provideContextMenuRootContext({
+contextMenuRootContext.provide({
   open,
   onOpenChange: (value: boolean) => {
     open.value = value

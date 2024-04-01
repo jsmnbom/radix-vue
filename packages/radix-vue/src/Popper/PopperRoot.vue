@@ -11,8 +11,7 @@ interface PopperRootContext {
   onAnchorChange(element: Measurable | HTMLElement | undefined): void
 }
 
-export const [injectPopperRootContext, providePopperRootContext]
-  = createContext<PopperRootContext>('PopperRoot')
+export const popperRootContext = createContext<PopperRootContext>('PopperRoot')
 </script>
 
 <script setup lang="ts">
@@ -20,7 +19,7 @@ import { ref } from 'vue'
 
 const anchor = ref<Measurable | HTMLElement>()
 
-providePopperRootContext({
+popperRootContext.provide({
   anchor,
   onAnchorChange: element => anchor.value = element,
 })

@@ -29,8 +29,7 @@ export interface MenubarRootContext {
   onMenuToggle(value: string): void
 }
 
-export const [injectMenubarRootContext, provideMenubarRootContext]
-  = createContext<MenubarRootContext>('MenubarRoot')
+export const menubarRootContext = createContext<MenubarRootContext>('MenubarRoot')
 </script>
 
 <script setup lang="ts">
@@ -57,7 +56,7 @@ const currentTabStopId = ref<string | null>(null)
 
 const { dir: propDir, loop } = toRefs(props)
 const dir = useDirection(propDir)
-provideMenubarRootContext({
+menubarRootContext.provide({
   modelValue,
   dir,
   loop,
