@@ -36,7 +36,7 @@ const disabled = computed(() => rootContext.disabled.value || props.disabled)
 const required = computed(() => rootContext.required.value || props.required)
 const checked = computed(() => rootContext.modelValue?.value === props.value)
 
-radiogroupItemContext.provide({ disabled, checked })
+radioGroupItemContext.provide({ disabled, checked })
 
 const isArrowKeyPressed = ref(false)
 const ARROW_KEYS = ['ArrowUp', 'ArrowDown', 'ArrowLeft', 'ArrowRight']
